@@ -13,13 +13,29 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         loader: "css-loader",
         options: {
           modules: {
-            auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-            localIdentName: options.isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:8]'
+            auto: (resPath: string) => Boolean(resPath.includes(".module.")),
+            localIdentName: options.isDev
+              ? "[path][name]__[local]--[hash:base64:5]"
+              : "[hash:base64:8]",
           },
-        }
+        },
       },
       //Compiles Sass to CSS
       "sass-loader",
+    ],
+  };
+
+  const svgLoader = {
+    test: /\.svg$/,
+    use: ["@svgr/webpack"],
+  };
+
+  const fileLoader = {
+    test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+    use: [
+      {
+        loader: "file-loader",
+      },
     ],
   };
 
@@ -30,5 +46,5 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     exclude: /node_modules/,
   };
 
-  return [typeScriptLoader, cssLoader];
+  return [typeScriptLoader, cssLoader, svgLoader, fileLoader];
 }
