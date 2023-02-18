@@ -21,7 +21,7 @@ module.exports = {
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }], // разрешаем расширение JSX в файлах '.js', '.jsx', '.tsx'
         'import/no-unresolved': 'off', // абсолютные пути
         'import/prefer-default-export': 'off', // дефолтный экспорт по умолчанию
-        'no-unused-vars': 'warn', // неиспользуемые переменные
+        'no-unused-vars': 'off', // неиспользуемые переменные
         'react/require-default-props': 'off', // подсветка дефолтных свойств (?)
         'react/react-in-jsx-scope': 'off', // импорт React по умолчанию
         'react/jsx-props-no-spreading': 'warn', // spread оператор

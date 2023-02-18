@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { Button } from 'shared/ui/Button';
-import { ThemeButton } from './Button';
+import { ButtonTheme } from './Button';
 
 describe('button', () => {
     test('default', () => {
@@ -10,7 +10,7 @@ describe('button', () => {
     });
 
     test('clear', () => {
-        render(<Button theme={ThemeButton.CLEAR}>Test</Button>);
+        render(<Button theme={ButtonTheme.CLEAR}>Test</Button>);
         expect(screen.getByText('Test')).toBeInTheDocument();
         screen.debug();
     });
