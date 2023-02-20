@@ -3,10 +3,20 @@
     cursor: pointer;
 }
 
-.clear {
+@mixin clear {
     outline: none;
     border: none;
     background: transparent;
+}
+
+.clear {
+    @include clear;
+}
+
+.clearInverted {
+    @include clear;
+
+    color: var(--inverted-primary-color);
 }
 
 .outline {

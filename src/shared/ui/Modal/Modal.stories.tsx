@@ -1,26 +1,29 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
+
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
+import { Modal } from './Modal';
 
 export default {
-    title: 'widget/ThemeSwitcher',
-    component: ThemeSwitcher,
+    title: 'shared/Modal',
+    component: Modal,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof ThemeSwitcher>;
+} as ComponentMeta<typeof Modal>;
 
-const Template: ComponentStory<typeof ThemeSwitcher> = (args) => <ThemeSwitcher {...args} />;
+const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
 
 export const Light = Template.bind({});
 Light.args = {
-    isInverted: false,
+    isOpen: true,
+    children: 'Модальное окно',
 };
-Light.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const Dark = Template.bind({});
 Dark.args = {
-    isInverted: false,
+    isOpen: true,
+    children: 'Модальное окно',
 };
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
