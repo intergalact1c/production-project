@@ -1,4 +1,5 @@
 import { addDecorator } from '@storybook/react';
+import i18n from 'i18next';
 import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator/StyleDecorator';
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '../../src/app/providers/ThemeProvider';
@@ -11,6 +12,12 @@ export const parameters = {
             color: /(background|color)$/i,
             date: /Date$/,
         },
+    },
+    i18n,
+    locale: 'ru',
+    locales: {
+        ru: 'Russian',
+        en: 'English',
     },
 };
 
