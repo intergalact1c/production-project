@@ -1,24 +1,23 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Loader } from 'shared/ui/Loader/ui/Loader';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
+import { LoginForm } from './LoginForm';
 
 export default {
-    title: 'shared/Loader',
-    component: Loader,
+    title: 'features/LoginForm',
+    component: LoginForm,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof Loader>;
+} as ComponentMeta<typeof LoginForm>;
 
-const Template: ComponentStory<typeof Loader> = (args) => <Loader {...args} />;
+const Template: ComponentStory<typeof LoginForm> = (args) => <LoginForm {...args} />;
 
 export const Light = Template.bind({});
 Light.args = {};
 
 export const Dark = Template.bind({});
 Dark.args = {};
-
 Dark.decorators = [ThemeDecorator(Theme.DARK)];

@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
     color: inherit;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 a {

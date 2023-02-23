@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Button } from 'shared/ui/Button';
-import { ButtonTheme } from 'shared/ui/Button/ui/Button';
-import cls from 'shared/ui/AppLink/AppLink.module.scss';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 
 interface LanguageSwitcherProps {
-  classname?: string;
-  short?: boolean;
+    classname?: string;
+    short?: boolean;
 }
 
 export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ classname, short }) => {
@@ -23,7 +21,7 @@ export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ classname, short }
             theme={ButtonTheme.BACKGROUND_INVERTED}
             onClick={toggle}
         >
-            {t(short ? 'Короткий язык' : 'Язык')}
+            {short ? t('Короткий язык') : t('Язык')}
         </Button>
     );
 };

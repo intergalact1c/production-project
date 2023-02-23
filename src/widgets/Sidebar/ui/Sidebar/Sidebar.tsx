@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
-import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/ui/Button';
+import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useTranslation } from 'react-i18next';
 import HomeIcon from 'shared/assets/icons/home.svg';
@@ -10,7 +10,7 @@ import AboutIcon from 'shared/assets/icons/about.svg';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
-  classname?: string;
+    classname?: string;
 }
 
 export const Sidebar = ({ classname }: SidebarProps) => {
