@@ -1,0 +1,19 @@
+.textTitle {
+    font: var(--font-l);
+    color: var(--primary-color);
+}
+
+.textText {
+    font: var(--font-m);
+    color: var(--secondary-color);
+}
+
+.error {
+    .textTitle {
+        color: var(--red-light);
+    }
+
+    .textText {
+        color: var(--red-dark);
+    }
+}

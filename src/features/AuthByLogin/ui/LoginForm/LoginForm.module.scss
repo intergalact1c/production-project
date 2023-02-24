@@ -3,6 +3,15 @@
     flex-direction: column;
 }
 
+.loginFormTitle {
+    margin-bottom: 20px;
+}
+
+.loginFormInput,
+.loginFormError {
+    margin-bottom: 10px;
+}
+
 .loginFormBtn {
     margin-top: 10px;
     margin-left: auto;

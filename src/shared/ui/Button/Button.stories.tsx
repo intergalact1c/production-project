@@ -15,11 +15,6 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-    children: 'Text',
-};
-
 export const Clear = Template.bind({});
 Clear.args = {
     children: 'Text',
@@ -93,4 +88,11 @@ ButtonSizeXL.args = {
     theme: ButtonTheme.BACKGROUND_INVERTED,
     square: true,
     size: ButtonSize.XL,
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+    children: 'Text',
+    theme: ButtonTheme.BACKGROUND_INVERTED,
+    disabled: true,
 };

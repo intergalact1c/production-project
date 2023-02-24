@@ -1,6 +1,11 @@
 .Button {
     padding: 10px 15px;
     cursor: pointer;
+
+    &:disabled {
+        opacity: 0.7;
+        cursor: default;
+    }
 }
 
 @mixin clear {
@@ -23,18 +28,21 @@
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
     background: transparent;
+    border-radius: 5px;
 }
 
 .background {
     background: var(--bg-color);
     color: var(--primary-color);
     border: none;
+    border-radius: 5px;
 }
 
 .backgroundInverted {
     background: var(--inverted-bg-color);
     color: var(--inverted-primary-color);
     border: none;
+    border-radius: 5px;
 }
 
 .square {

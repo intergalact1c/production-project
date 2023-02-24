@@ -1,13 +1,19 @@
 .InputWrapper {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
 }
 
 .placeholder {
+    display: flex;
     flex-shrink: 0;
     padding-right: 7px;
     min-width: 100px;
+
+    &::after {
+        content: ">";
+        margin-left: 7px;
+    }
 }
 
 .input {
@@ -19,12 +25,12 @@
     color: transparent;
     text-shadow: 0 0 0 var(--primary-color);
     font-family: monospace !important;
+    font-weight: 600;
 }
 
 .caretWrapper {
     flex-grow: 1;
     position: relative;
-    background: yellow;
 }
 
 .caret {
