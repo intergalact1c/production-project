@@ -31,13 +31,13 @@ export const Modal: FC<ModalProps> = ({
         e.stopPropagation();
     };
 
-    const onKeyDown = useCallback((e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-            closeHandler();
-        }
-    }, [closeHandler]);
-
     useEffect(() => {
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                closeHandler();
+            }
+        };
+
         if (isOpen) {
             window.addEventListener('keydown', onKeyDown);
         }
@@ -45,7 +45,7 @@ export const Modal: FC<ModalProps> = ({
         return () => {
             window.removeEventListener('keydown', onKeyDown);
         };
-    }, [isOpen, onKeyDown]);
+    }, [isOpen, closeHandler]);
 
     useEffect(() => {
         if (isOpen) {
