@@ -1,4 +1,3 @@
-import { StateSchema } from 'app/providers/StoreProvider';
 import { CounterSchema } from 'entities/Counter';
 import { counterReducer, counterActions } from './counterSlice';
 

@@ -1,9 +1,9 @@
 import { DeepPartial } from '@reduxjs/toolkit';
-import { LoginSchema } from '../types/loginSchema';
+import { LoginSchema } from 'features/AuthByLogin';
 import { loginActions, loginReducer } from './loginSlice';
 
 describe('loginSlice', () => {
-    test('test set username', () => {
+    test('test set login', () => {
         const state: DeepPartial<LoginSchema> = { login: '123' };
         expect(loginReducer(
             state as LoginSchema,
