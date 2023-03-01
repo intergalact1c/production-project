@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Theme, useTheme } from 'app/providers/ThemeProvider';
 import LightIcon from 'shared/assets/icons/theme-light.svg';
 import DarkIcon from 'shared/assets/icons/theme-dark.svg';
@@ -10,7 +10,7 @@ interface ThemeSwitcherProps {
     isInverted?: boolean;
 }
 
-export const ThemeSwitcher = ({ classname, isInverted = true }: ThemeSwitcherProps) => {
+export const ThemeSwitcher = memo(({ classname, isInverted = true }: ThemeSwitcherProps) => {
     const { theme, toggleTheme } = useTheme();
 
     const normal = theme === Theme.DARK ? <DarkIcon /> : <LightIcon />;
@@ -25,4 +25,4 @@ export const ThemeSwitcher = ({ classname, isInverted = true }: ThemeSwitcherPro
             {isInverted ? normal : storybook}
         </Button>
     );
-};
+});

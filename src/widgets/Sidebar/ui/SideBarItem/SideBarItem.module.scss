@@ -1,0 +1,11 @@
+li {
+    a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        svg {
+            fill: var(--inverted-primary-color);
+        }
+    }
+}

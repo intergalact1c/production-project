@@ -3,9 +3,10 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getLoginFormPassword } from '../../model/selectors/getLoginFormPassword/getLoginFormPassword';
 import { getLoginFormLoading } from '../../model/selectors/getLoginFormLoading/getLoginFormLoading';
 import { getLoginFormError } from '../../model/selectors/getLoginFormError/getLoginFormError';
@@ -17,15 +18,16 @@ import cls from './LoginForm.module.scss';
 
 export interface LoginFormProps {
     classname?: string;
+    onSuccess?: () => void;
 }
 
 const initialReducers: ReducersList = {
     loginForm: loginReducer,
 };
 
-const LoginForm = memo(({ classname }: LoginFormProps) => {
+const LoginForm = memo(({ classname, onSuccess }: LoginFormProps) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const login = useSelector(getLoginFormLogin);
     const password = useSelector(getLoginFormPassword);
@@ -35,12 +37,17 @@ const LoginForm = memo(({ classname }: LoginFormProps) => {
     const onChangeLogin = useCallback((value: string) => {
         dispatch(loginActions.setLogin(value));
     }, [dispatch]);
+
     const onChangePassword = useCallback((value: string) => {
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
-    const onLoginClick = useCallback(() => {
-        dispatch(fetchUserByLogin({ login, password }));
-    }, [dispatch, login, password]);
+
+    const onLoginClick = useCallback(async () => {
+        const result = await dispatch(fetchUserByLogin({ login, password }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+        }
+    }, [dispatch, login, password, onSuccess]);
 
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {

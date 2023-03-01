@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useTranslation } from 'react-i18next';
-import HomeIcon from 'shared/assets/icons/home.svg';
-import AboutIcon from 'shared/assets/icons/about.svg';
+import { SideBarItem } from '../SideBarItem/SideBarItem';
+import { SidebarItemList } from '../../model/items';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
     classname?: string;
 }
 
-export const Sidebar = ({ classname }: SidebarProps) => {
+export const Sidebar = memo(({ classname }: SidebarProps) => {
     const [collapsed, setCollapsed] = useState(false);
 
     const onToggle = () => {
@@ -43,18 +42,13 @@ export const Sidebar = ({ classname }: SidebarProps) => {
             </Button>
             <nav className={cls.links}>
                 <ul>
-                    <li>
-                        <AppLink to="/" theme={AppLinkTheme.SECONDARY} title={t('Главная')}>
-                            <HomeIcon />
-                            {!collapsed && t('Главная')}
-                        </AppLink>
-                    </li>
-                    <li>
-                        <AppLink to="/about" theme={AppLinkTheme.SECONDARY} title={t('О сайте')}>
-                            <AboutIcon />
-                            {!collapsed && t('О сайте')}
-                        </AppLink>
-                    </li>
+                    {SidebarItemList.map((item) => (
+                        <SideBarItem
+                            key={item.path}
+                            item={item}
+                            collapsed={collapsed}
+                        />
+                    ))}
                 </ul>
             </nav>
             <div className={cls.switchers}>
@@ -63,4 +57,4 @@ export const Sidebar = ({ classname }: SidebarProps) => {
             </div>
         </div>
     );
-};
+});
