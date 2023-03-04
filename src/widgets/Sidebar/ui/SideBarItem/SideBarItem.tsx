@@ -16,8 +16,10 @@ export const SideBarItem = memo(({ item, collapsed }: SideBarItemProps) => {
 
     return (
         <li className={classNames(cls.SideBarItem, {}, [])}>
+            {/* i18next-extract-disable-next-line */}
             <AppLink to={path} theme={AppLinkTheme.SECONDARY} title={t(text)}>
                 <Icon />
+                {/* i18next-extract-disable-next-line */}
                 {!collapsed && t(text)}
             </AppLink>
         </li>

@@ -19,9 +19,8 @@
 .input {
     width: 100%;
     border: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background: transparent;
+    padding: 5px 0;
+    background: lightgray;
     color: transparent;
     text-shadow: 0 0 0 var(--primary-color);
     font-family: monospace !important;
@@ -31,6 +30,7 @@
 .caretWrapper {
     flex-grow: 1;
     position: relative;
+    background: lightgray;
 }
 
 .caret {

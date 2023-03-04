@@ -1,12 +1,12 @@
 import React, {
     FC, useCallback, useEffect, useState,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Portal } from 'shared/ui/Portal/Portal';
 import cls from './Modal.module.scss';
 
 interface ModalProps {
-    classname?: string;
+    className?: string;
     children?: React.ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
@@ -14,10 +14,10 @@ interface ModalProps {
 }
 
 export const Modal: FC<ModalProps> = ({
-    classname, children, isOpen, onClose, lazy = false,
+    className, children, isOpen, onClose, lazy = false,
 }) => {
     const [isMounted, setIsMounted] = useState(false);
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls.opened]: isOpen,
     };
 
@@ -63,7 +63,7 @@ export const Modal: FC<ModalProps> = ({
 
     return (
         <Portal>
-            <div className={classNames(cls.Modal, mods, [classname])}>
+            <div className={classNames(cls.Modal, mods, [className])}>
                 <div onClick={closeHandler} className={cls.overlay}>
                     <div onClick={onContentClick} className={cls.content}>
                         {children}

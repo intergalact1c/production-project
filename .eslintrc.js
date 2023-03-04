@@ -23,7 +23,7 @@ module.exports = {
         'react-hooks',
     ],
     rules: {
-        'react/jsx-indent': [2, 4], // отступы для jsx. 2 - означает, что будет выбрасываться ошибка при не соблюдении праваила
+        'react/jsx-indent': [2, 4], // отступы для jsx. 2 - означает, что будет выбрасываться ошибка при не соблюдении правила
         'react/jsx-indent-props': [2, 4], // отступы для пропсов в jsx
         indent: [2, 4], // отступы для остального кода
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }], // разрешаем расширение JSX в файлах '.js', '.jsx', '.tsx'
@@ -45,9 +45,11 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
         'no-param-reassign': 'off', // ESLint: Assignment to property of function parameter 'state'.(no-param-reassign)
+        'no-undef': 'off',
     },
     globals: {
         __IS_DEV__: true,
+        __API__: true,
     },
     overrides: [
         {

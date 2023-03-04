@@ -6,11 +6,11 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { classNames } from 'shared/lib/classNames/classNames';
 
 interface ThemeSwitcherProps {
-    classname?: string;
+    className?: string;
     isInverted?: boolean;
 }
 
-export const ThemeSwitcher = memo(({ classname, isInverted = true }: ThemeSwitcherProps) => {
+export const ThemeSwitcher = memo(({ className, isInverted = true }: ThemeSwitcherProps) => {
     const { theme, toggleTheme } = useTheme();
 
     const normal = theme === Theme.DARK ? <DarkIcon /> : <LightIcon />;
@@ -19,7 +19,7 @@ export const ThemeSwitcher = memo(({ classname, isInverted = true }: ThemeSwitch
     return (
         <Button
             theme={ButtonTheme.CLEAR}
-            className={classNames('', {}, [classname])}
+            className={classNames('', {}, [className])}
             onClick={toggleTheme}
         >
             {isInverted ? normal : storybook}

@@ -5,17 +5,19 @@ import { useTranslation } from 'react-i18next';
 import { LoginModal } from 'features/AuthByLogin';
 import { getUserAuthData, userActions } from 'entities/User';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
-    classname?: string;
+    className?: string;
 }
 
-export const Navbar = memo(({ classname }: NavbarProps) => {
+export const Navbar = memo(({ className }: NavbarProps) => {
     const authData = useSelector(getUserAuthData);
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const onOpenModal = useCallback(() => {
         setIsModalOpen(true);
@@ -27,20 +29,21 @@ export const Navbar = memo(({ classname }: NavbarProps) => {
 
     const onLogout = useCallback(() => {
         dispatch(userActions.logout());
-    }, [dispatch]);
+        navigate('/');
+    }, [dispatch, navigate]);
 
-    const navbarClassname = classNames(cls.Navbar, {}, [classname]);
+    const navbarClassName = classNames(cls.Navbar, {}, [className]);
 
     if (authData) {
         return (
-            <div className={navbarClassname}>
+            <div className={navbarClassName}>
                 <Button theme={ButtonTheme.CLEAR_INVERTED} className="ml-a" onClick={onLogout}>{(t('Выйти'))}</Button>
             </div>
         );
     }
 
     return (
-        <div className={navbarClassname}>
+        <div className={navbarClassName}>
             <Button theme={ButtonTheme.CLEAR_INVERTED} className="ml-a" onClick={onOpenModal}>{(t('Войти'))}</Button>
             <LoginModal isOpen={isModalOpen} onClose={onCloseModal} />
         </div>

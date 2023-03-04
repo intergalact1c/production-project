@@ -4,11 +4,11 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 
 interface LanguageSwitcherProps {
-    classname?: string;
+    className?: string;
     short?: boolean;
 }
 
-export const LanguageSwitcher = memo(({ classname, short }: LanguageSwitcherProps) => {
+export const LanguageSwitcher = memo(({ className, short }: LanguageSwitcherProps) => {
     const { t, i18n } = useTranslation();
 
     const toggle = async () => {
@@ -17,7 +17,7 @@ export const LanguageSwitcher = memo(({ classname, short }: LanguageSwitcherProp
 
     return (
         <Button
-            className={classNames('', {}, [classname])}
+            className={classNames('', {}, [className])}
             theme={ButtonTheme.BACKGROUND_INVERTED}
             onClick={toggle}
         >

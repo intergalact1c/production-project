@@ -18,7 +18,7 @@ const charSize = 7.33;
 
 export const Input = memo((props: InputProps) => {
     const {
-        classname,
+        className,
         value,
         onChange,
         type = 'text',
@@ -55,7 +55,7 @@ export const Input = memo((props: InputProps) => {
     };
 
     const onSelectHandler = (e: SyntheticEvent<HTMLInputElement, Event>) => {
-        const start = e.currentTarget.selectionStart;
+        const start = e.currentTarget.selectionStart || 0;
         setSelectCaretPosition(start);
         if (e.currentTarget.value.length * charSize < inputWidth) {
             setCaretPosition(start);
@@ -71,15 +71,17 @@ export const Input = memo((props: InputProps) => {
 
     useEffect(() => {
         if (!inputWidth) {
-            const width = inputRef.current.offsetWidth;
-            setInputWidth(Math.ceil(width - charSize));
-            inputRef.current.parentElement.style.width = `${inputRef.current.offsetWidth}px`;
-            inputRef.current.style.width = `${width - charSize}px`;
+            const width = inputRef.current?.offsetWidth;
+            if (width && inputRef.current.parentElement) {
+                setInputWidth(Math.ceil(width - charSize));
+                inputRef.current.parentElement.style.width = `${inputRef.current.offsetWidth}px`;
+                inputRef.current.style.width = `${width - charSize}px`;
+            }
         }
     }, [inputWidth]);
 
     return (
-        <div className={classNames(cls.InputWrapper, {}, [classname])}>
+        <div className={classNames(cls.InputWrapper, {}, [className])}>
             {placeholder && (
                 <div className={cls.placeholder}>
                     {placeholder}

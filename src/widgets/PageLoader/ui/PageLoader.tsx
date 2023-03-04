@@ -4,11 +4,11 @@ import { Loader } from 'shared/ui/Loader/Loader';
 import cls from './PageLoader.module.scss';
 
 interface PageLoaderProps {
-    classname?: string;
+    className?: string;
 }
 
-export const PageLoader = ({ classname }: PageLoaderProps) => (
-    <div className={classNames(cls.PageLoader, {}, [classname])}>
+export const PageLoader = ({ className }: PageLoaderProps) => (
+    <div className={classNames(cls.PageLoader, {}, [className])}>
         <Loader />
     </div>
 );

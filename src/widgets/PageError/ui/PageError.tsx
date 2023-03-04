@@ -5,10 +5,10 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import cls from './PageError.module.scss';
 
 interface PageErrorProps {
-    classname?: string;
+    className?: string;
 }
 
-export const PageError = ({ classname }: PageErrorProps) => {
+export const PageError = ({ className }: PageErrorProps) => {
     const { t } = useTranslation();
 
     const reloadPage = () => {
@@ -16,7 +16,7 @@ export const PageError = ({ classname }: PageErrorProps) => {
     };
 
     return (
-        <div className={classNames(cls.PageError, {}, [classname])}>
+        <div className={classNames(cls.PageError, {}, [className])}>
             <p>{t('Произошла непредвиденная ошибка')}</p>
             <Button theme={ButtonTheme.OUTLINE} onClick={reloadPage}>
                 {t('Обновить страницу')}

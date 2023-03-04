@@ -8,7 +8,7 @@ export enum TextTheme {
 }
 
 interface TextProps {
-  classname?: string;
+  className?: string;
   title?: string;
   text?: string;
   theme?: string;
@@ -16,14 +16,14 @@ interface TextProps {
 
 export const Text = memo((props: TextProps) => {
     const {
-        classname,
+        className,
         title,
         text,
         theme = TextTheme.PRIMARY,
     } = props;
 
     return (
-        <div className={classNames(cls.Text, { [cls[theme]]: true }, [classname])}>
+        <div className={classNames(cls.Text, { [cls[theme]]: true }, [className])}>
             {title && <p className={cls.textTitle}>{title}</p>}
             {text && <p className={cls.textText}>{text}</p>}
         </div>

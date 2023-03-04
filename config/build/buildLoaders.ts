@@ -23,6 +23,14 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     const typeScriptLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
+        /* use: [
+            {
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: true,
+                },
+            },
+        ], */
         exclude: /node_modules/,
     };
 

@@ -9,10 +9,10 @@ import { SidebarItemList } from '../../model/items';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
-    classname?: string;
+    className?: string;
 }
 
-export const Sidebar = memo(({ classname }: SidebarProps) => {
+export const Sidebar = memo(({ className }: SidebarProps) => {
     const [collapsed, setCollapsed] = useState(false);
 
     const onToggle = () => {
@@ -25,7 +25,7 @@ export const Sidebar = memo(({ classname }: SidebarProps) => {
         <div
             data-testid="sidebar"
             className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
-                classname,
+                className,
             ])}
         >
             <Button
@@ -53,7 +53,7 @@ export const Sidebar = memo(({ classname }: SidebarProps) => {
             </nav>
             <div className={cls.switchers}>
                 <ThemeSwitcher />
-                <LanguageSwitcher classname={cls.lang} short={collapsed} />
+                <LanguageSwitcher className={cls.lang} short={collapsed} />
             </div>
         </div>
     );

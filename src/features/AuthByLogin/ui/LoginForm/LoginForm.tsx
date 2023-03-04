@@ -17,15 +17,15 @@ import { loginActions, loginReducer } from '../../model/slice/LoginSlice';
 import cls from './LoginForm.module.scss';
 
 export interface LoginFormProps {
-    classname?: string;
-    onSuccess?: () => void;
+    className?: string;
+    onSuccess: () => void;
 }
 
 const initialReducers: ReducersList = {
     loginForm: loginReducer,
 };
 
-const LoginForm = memo(({ classname, onSuccess }: LoginFormProps) => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
@@ -65,29 +65,29 @@ const LoginForm = memo(({ classname, onSuccess }: LoginFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
-            <div className={classNames(cls.LoginForm, {}, [classname])}>
+            <div className={classNames(cls.LoginForm, {}, [className])}>
                 <Text
                     title={t('Форма авторизации')}
-                    classname={cls.loginFormTitle}
+                    className={cls.loginFormTitle}
                 />
                 <Input
                     autoFocus
                     placeholder={t('Логин')}
                     value={login}
                     onChange={onChangeLogin}
-                    classname={cls.loginFormInput}
+                    className={cls.loginFormInput}
                 />
                 <Input
                     placeholder={t('Пароль')}
                     value={password}
                     onChange={onChangePassword}
-                    classname={cls.loginFormInput}
+                    className={cls.loginFormInput}
                 />
                 {error && (
                     <Text
                         text={t('Неверный логин или пароль')}
                         theme={TextTheme.ERROR}
-                        classname={cls.loginFormError}
+                        className={cls.loginFormError}
                     />
                 )}
                 <Button
