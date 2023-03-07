@@ -10,6 +10,7 @@ export default {
     globals: {
         __IS_DEV__: true,
         __API__: '',
+        __PROJECT__: 'jest',
     },
 
     // Automatically clear mock calls, instances and results before every test
@@ -57,7 +58,8 @@ export default {
     setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
 
     moduleNameMapper: {
-        '\\.s?css$': 'identity-obj-proxy',
+        // '\\.s?css$': 'identity-obj-proxy',
+        '\\.(s?css|png)$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
     },
 

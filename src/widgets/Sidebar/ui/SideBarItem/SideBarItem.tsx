@@ -2,6 +2,8 @@ import React, { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { useSelector } from 'react-redux';
+import { getUserAuthData } from 'entities/User';
 import { SidebarItemType } from '../../model/items';
 import cls from './SideBarItem.module.scss';
 
@@ -12,15 +14,25 @@ interface SideBarItemProps {
 
 export const SideBarItem = memo(({ item, collapsed }: SideBarItemProps) => {
     const { t } = useTranslation();
-    const { path, Icon, text } = item;
+
+    const isAuth = useSelector(getUserAuthData);
+
+    const {
+        path, Icon, text, authOnly,
+    } = item;
+
+    // i18next-extract-disable-next-line
+    const i18nText = t(text);
+
+    if (authOnly && !isAuth) {
+        return null;
+    }
 
     return (
         <li className={classNames(cls.SideBarItem, {}, [])}>
-            {/* i18next-extract-disable-next-line */}
-            <AppLink to={path} theme={AppLinkTheme.SECONDARY} title={t(text)}>
+            <AppLink to={path} theme={AppLinkTheme.SECONDARY} title={i18nText}>
                 <Icon />
-                {/* i18next-extract-disable-next-line */}
-                {!collapsed && t(text)}
+                {!collapsed && i18nText}
             </AppLink>
         </li>
     );

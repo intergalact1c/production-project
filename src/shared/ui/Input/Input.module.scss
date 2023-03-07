@@ -1,36 +1,25 @@
+@import "../../../app/styles/mixins";
+
 .InputWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include form-field;
 }
 
 .placeholder {
-    display: flex;
-    flex-shrink: 0;
-    padding-right: 7px;
-    min-width: 100px;
-
-    &::after {
-        content: ">";
-        margin-left: 7px;
-    }
+    @include form-field-text;
 }
 
 .input {
     width: 100%;
     border: none;
     padding: 5px 0;
-    background: lightgray;
+    background: transparent;
     color: transparent;
     text-shadow: 0 0 0 var(--primary-color);
     font-family: monospace !important;
-    font-weight: 600;
 }
 
 .caretWrapper {
-    flex-grow: 1;
-    position: relative;
-    background: lightgray;
+    @include form-field-main;
 }
 
 .caret {
@@ -41,6 +30,12 @@
     height: 3px;
     background: var(--primary-color);
     animation: blink 0.7s forwards infinite;
+}
+
+.readonly {
+    .caretWrapper {
+        opacity: 0.8;
+    }
 }
 
 @keyframes blink {

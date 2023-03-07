@@ -1,0 +1,27 @@
+@mixin form-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin form-field-text {
+    display: flex;
+    flex-shrink: 0;
+    padding-right: 7px;
+    min-width: 180px;
+
+    span {
+        margin-right: auto;
+    }
+
+    &::after {
+        content: ">";
+        margin-left: 7px;
+    }
+}
+
+@mixin form-field-main {
+    flex-grow: 1;
+    position: relative;
+    background: lightgray;
+}

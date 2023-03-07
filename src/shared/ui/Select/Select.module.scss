@@ -1,0 +1,27 @@
+@import "../../../app/styles/mixins";
+
+.SelectWrapper {
+    @include form-field;
+}
+
+label {
+    @include form-field-text;
+}
+
+select {
+    @include form-field-main;
+
+    border: none;
+    color: var(--primary-color);
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+    &:disabled {
+        opacity: 0.8;
+    }
+}
+
+option {
+    color: var(--inverted-primary-color);
+    background: var(--inverted-bg-color);
+}

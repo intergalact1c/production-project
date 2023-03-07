@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
-import { NavigateFunction, NavigateOptions } from 'react-router';
+import { NavigateOptions } from 'react-router';
 import { To } from 'react-router-dom';
 
 export interface StateSchema {
@@ -37,5 +37,6 @@ export interface ThunkExtraArg {
 
 export interface ThunkConfig<T> {
     rejectValue: T,
-    extra: ThunkExtraArg
+    extra: ThunkExtraArg,
+    state: StateSchema,
 }

@@ -1,17 +1,18 @@
 import React, {
     InputHTMLAttributes, memo, SyntheticEvent, useEffect, useRef, useState,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
 
 interface InputProps extends HTMLInputProps {
     classname?: string;
-    value?: string;
+    value?: string | number;
     onChange?: (value: string) => void;
     placeholder?: string;
     autoFocus?: boolean;
+    readonly?: boolean;
 }
 
 const charSize = 7.33;
@@ -24,6 +25,7 @@ export const Input = memo((props: InputProps) => {
         type = 'text',
         placeholder,
         autoFocus = false,
+        readonly = false,
         ...rest
     } = props;
 
@@ -56,11 +58,17 @@ export const Input = memo((props: InputProps) => {
 
     const onSelectHandler = (e: SyntheticEvent<HTMLInputElement, Event>) => {
         const start = e.currentTarget.selectionStart || 0;
-        setSelectCaretPosition(start);
+        setSelectCaretPosition(start + 1);
         if (e.currentTarget.value.length * charSize < inputWidth) {
-            setCaretPosition(start);
+            setCaretPosition(start + 1);
         }
     };
+
+    const mods: Mods = {
+        [cls.readonly]: readonly,
+    };
+
+    const isCaretVisible = isFocused && !readonly;
 
     useEffect(() => {
         if (autoFocus) {
@@ -81,13 +89,13 @@ export const Input = memo((props: InputProps) => {
     }, [inputWidth]);
 
     return (
-        <div className={classNames(cls.InputWrapper, {}, [className])}>
+        <div className={classNames(cls.InputWrapper, mods, [className])}>
             {placeholder && (
                 <div className={cls.placeholder}>
-                    {placeholder}
+                    <span>{placeholder}</span>
                 </div>
             )}
-            <div className={cls.caretWrapper}>
+            <div className={cls.caretWrapper} style={{ paddingLeft: `${charSize}px` }}>
                 <input
                     ref={inputRef}
                     type={type}
@@ -97,9 +105,10 @@ export const Input = memo((props: InputProps) => {
                     onFocus={onFocusHandler}
                     onSelect={onSelectHandler}
                     className={cls.input}
+                    disabled={readonly}
                     {...rest}
                 />
-                {isFocused && (
+                {isCaretVisible && (
                     <span
                         className={cls.caret}
                         style={{ left: `${caretPosition * charSize}px` }}
