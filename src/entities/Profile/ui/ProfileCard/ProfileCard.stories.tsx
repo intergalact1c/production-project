@@ -2,8 +2,9 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { avatarUrl as AvatarImg } from 'shared/assets/tests/urls';
 import { ProfileCard } from './ProfileCard';
-import AvatarImg from '../../../../shared/assets/tests/avatar.png';
+// import AvatarImg from '../../assets/tests/avatar.png';
 
 export default {
     title: 'entities/ProfileCard',
