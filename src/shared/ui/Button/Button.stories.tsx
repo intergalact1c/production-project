@@ -35,7 +35,7 @@ Outline.args = {
 
 export const OutlineRed = Template.bind({});
 OutlineRed.args = {
-    children: 'Text',
+    children: 'Red',
     theme: ButtonTheme.OUTLINE_RED,
 };
 
@@ -55,7 +55,7 @@ OutlineSizeL.args = {
 
 export const OutlineSizeXL = Template.bind({});
 OutlineSizeXL.args = {
-    children: 'Text',
+    children: 'Outline XL',
     theme: ButtonTheme.OUTLINE,
     size: ButtonSize.XL,
 };
