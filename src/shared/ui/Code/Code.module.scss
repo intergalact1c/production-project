@@ -1,0 +1,20 @@
+.Code {
+    position: relative;
+    border: 1px solid var(--primary-color);
+    padding: 20px;
+    background: var(--code-bg);
+}
+
+pre {
+    overflow-y: auto;
+}
+
+.btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    svg path {
+        stroke: var(--primary-color);
+    }
+}

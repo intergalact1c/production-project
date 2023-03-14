@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { LoginModal } from 'features/AuthByLogin';
 import { getUserAuthData, userActions } from 'entities/User';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -17,7 +16,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const onOpenModal = useCallback(() => {
         setIsModalOpen(true);
@@ -29,8 +27,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
     const onLogout = useCallback(() => {
         dispatch(userActions.logout());
-        navigate('/');
-    }, [dispatch, navigate]);
+    }, [dispatch]);
 
     const navbarClassName = classNames(cls.Navbar, {}, [className]);
 

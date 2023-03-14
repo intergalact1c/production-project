@@ -1,5 +1,4 @@
 .textTitle {
-    font: var(--font-l);
     color: var(--primary-color);
 }
 
@@ -28,4 +27,24 @@
 
 .right {
     text-align: right;
+}
+
+.size_m {
+    .textTitle {
+        font: var(--font-l);
+    }
+
+    .textText {
+        font: var(--font-m);
+    }
+}
+
+.size_l {
+    .textTitle {
+        font: var(--font-xl);
+    }
+
+    .textText {
+        font: var(--font-l);
+    }
 }
