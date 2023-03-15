@@ -16,5 +16,7 @@
   "Логин": "Login",
   "Пароль": "Password",
   "Форма авторизации": "Authorization form",
-  "Неверный логин или пароль": "Wrong login or password"
+  "Неверный логин или пароль": "Wrong login or password",
+  "Комментарии": "Comments",
+  "Комментарии отсутствуют": "No comments"
 }
