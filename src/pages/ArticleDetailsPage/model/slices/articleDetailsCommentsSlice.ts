@@ -4,7 +4,7 @@ import {
 } from '@reduxjs/toolkit';
 import { CommentType } from 'entities/Comment';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { ArticleDetailsCommentsSchema } from '../types/ArticleDetailsCommentsSchema';
+import { ArticleDetailsCommentsSchema } from '../types/articleDetailsCommentsSchema';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
 const commentAdapter = createEntityAdapter<CommentType>({
