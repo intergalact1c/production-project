@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, Suspense, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { ArticleDetails } from 'entities/Article';
@@ -9,10 +9,13 @@ import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/Dynamic
 import { useSelector } from 'react-redux';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+// import AddCommentForm from 'features/AddCommentForm/ui/AddCommentForm/AddCommentForm';
+import { AddCommentForm } from 'features/AddCommentForm';
 import {
     fetchCommentsByArticleId,
-} from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { getArticleCommentsError, getArticleCommentsIsLoading } from '../../model/selectors/comments';
+} from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { addCommentFormArticle } from '../../model/services/addCommentFormArticle/addCommentFormArticle';
+import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import { articleDetailsCommentsReducer, getArticleComments } from '../../model/slices/articleDetailsCommentsSlice';
 import cls from './ArticleDetailsPage.module.scss';
 
@@ -31,6 +34,10 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
     // const error = useSelector(getArticleCommentsError);
     const dispatch = useAppDispatch();
+
+    const onSendComment = useCallback((text: string) => {
+        dispatch(addCommentFormArticle(text));
+    }, [dispatch]);
 
     const articleId = __PROJECT__ !== 'storybook' ? id : '1';
 
@@ -51,6 +58,9 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
             <div className={classNames('', {}, [className])}>
                 <ArticleDetails articleId={articleId} />
                 <Text title={t('Комментарии')} className={cls.commentsTitle} />
+                <Suspense fallback="">
+                    <AddCommentForm onSendComment={onSendComment} />
+                </Suspense>
                 <CommentList
                     isLoading={commentsIsLoading}
                     comments={comments}

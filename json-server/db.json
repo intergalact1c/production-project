@@ -29,7 +29,9 @@
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "views": 1022,
       "createdAt": "26.02.2022",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -110,25 +112,63 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "тест123",
+      "id": "UbV7l5H"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "теессст",
+      "id": "QOkaEOz"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "новый тест 123",
+      "id": "9Dwmdvc"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "123",
+      "id": "sQOQzwc"
     }
   ],
-  "profile": {
-    "first": "Илья",
-    "lastname": "Пономарев",
-    "age": 34,
-    "currency": "RUB",
-    "country": "Russia",
-    "city": "Нижний Новгород",
-    "login": "super_admin",
-    "avatar": "https://fs05.gcfiles.net/fileservice/file/thumbnail/h/5d6d5ef88b9f45226680eee66b1f3b4c.png/s/70x70/a/550990/sc/261"
-  },
+  "profile": [
+    {
+      "id": "1",
+      "first": "Илья",
+      "lastname": "Пономарев",
+      "age": 34,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Нижний Новгород",
+      "login": "super_admin",
+      "avatar": "https://fs05.gcfiles.net/fileservice/file/thumbnail/h/5d6d5ef88b9f45226680eee66b1f3b4c.png/s/70x70/a/550990/sc/261"
+    },
+    {
+      "id": "2",
+      "first": "Юзер",
+      "lastname": "Юзеров",
+      "age": 40,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Москва",
+      "login": "user",
+      "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
+    }
+  ],
   "users": [
     {
       "id": "1",
       "login": "admin",
       "password": "1234",
       "role": "ADMIN",
-      "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
+      "avatar": "https://fs05.gcfiles.net/fileservice/file/thumbnail/h/5d6d5ef88b9f45226680eee66b1f3b4c.png/s/70x70/a/550990/sc/261"
     },
     {
       "id": "2",

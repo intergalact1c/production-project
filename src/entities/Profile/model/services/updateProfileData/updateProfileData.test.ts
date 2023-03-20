@@ -6,6 +6,7 @@ import { ValidateProfileError } from 'entities/Profile';
 import { updateProfileData } from './updateProfileData';
 
 const data = {
+    id: '1',
     first: 'Имя',
     lastname: 'Фамилия',
     age: 19,

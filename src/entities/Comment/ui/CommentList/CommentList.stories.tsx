@@ -39,3 +39,9 @@ Light.args = args;
 export const Dark = Template.bind({});
 Dark.args = args;
 Dark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const Loading = Template.bind({});
+Loading.args = {
+    comments: [],
+    isLoading: true,
+};
