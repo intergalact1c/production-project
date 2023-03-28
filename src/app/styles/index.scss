@@ -18,13 +18,10 @@ body {
     display: flex;
 }
 
-.page-wrapper {
-    flex-grow: 1;
-    height: calc(100vh - var(--navbar-height));
-    overflow: auto;
-    padding: 40px;
+.ml-a {
+    margin-left: auto !important;
 }
 
-.ml-a {
-    margin-left: auto;
+.mw_a {
+    min-width: auto !important;
 }

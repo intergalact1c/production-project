@@ -1,0 +1,16 @@
+.ArticleViewSelector {
+    display: flex;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.notSelected {
+    svg path {
+        fill: grey;
+    }
+}

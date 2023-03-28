@@ -11,7 +11,10 @@ describe('fetchUserByLogin', () => {
         const result = await thunk.CallThunk({ login: 'login', password: 'password' });
 
         expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue)); // проверка на то, что dispatch был вызван с аргументом userValue
-        expect(thunk.dispatch).toHaveBeenCalledTimes(3); // проверка на то, что dispatch был вызван 3 раза: 11 (21 строка TestAsyncThunk.ts), 22 и 24 строки fetchUserByLogin.ts
+        expect(thunk.dispatch).toHaveBeenCalledTimes(3); // проверка на то, что dispatch был вызван 3 раза:
+        // 1 раз - когда вызвали сам action fetchUserByLogin (pending)
+        // 2 раз - когда вызвали dispatch с action setAuthData (24 строка fetchUserByLogin.ts)
+        // 3 раз - когда происходит fulfilled и мы делаем return на 27 строке fetchUserByLogin.ts
         expect(thunk.api.post).toHaveBeenCalled(); // проверка на то, что метод post вызвался
         expect(result.meta.requestStatus).toBe('fulfilled'); // проверка на то, что AsyncThunk отработал без ошибки
         expect(result.payload).toEqual(userValue); // проверка на то, что возвращаются данные о пользователе
@@ -22,7 +25,7 @@ describe('fetchUserByLogin', () => {
         thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
         const result = await thunk.CallThunk({ login: 'login', password: 'password' });
 
-        expect(thunk.dispatch).toHaveBeenCalledTimes(2); // т.к. не делается return в 24 строке fetchUserByLogin.ts
+        expect(thunk.dispatch).toHaveBeenCalledTimes(2); // т.к. не вызывается промежуточный dispatch в 24 строке fetchUserByLogin.ts
         expect(thunk.api.post).toHaveBeenCalled();
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toBe('error');

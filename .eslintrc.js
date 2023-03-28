@@ -46,6 +46,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
         'no-param-reassign': 'off', // ESLint: Assignment to property of function parameter 'state'.(no-param-reassign)
         'no-undef': 'off',
+        'react/no-array-index-key': 'off', // index as key
     },
     globals: {
         __IS_DEV__: true,

@@ -22,7 +22,7 @@ export const fetchUserByLogin = createAsyncThunk<User, fetchUserByLoginProps, Th
 
             localStorage.setItem(USER_LS_KEY, JSON.stringify(response.data));
             dispatch(userActions.setAuthData(response.data));
-            extra.navigate?.(`${RoutePath.profile}${response.data.id}`);
+            // extra.navigate?.(`${RoutePath.profile}${response.data.id}`);
 
             return response.data;
         } catch (e) {

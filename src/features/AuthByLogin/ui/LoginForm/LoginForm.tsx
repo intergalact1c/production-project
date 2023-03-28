@@ -7,6 +7,9 @@ import { useSelector } from 'react-redux';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { useNavigate } from 'react-router-dom';
+import { User } from 'entities/User';
 import { getLoginFormPassword } from '../../model/selectors/getLoginFormPassword/getLoginFormPassword';
 import { getLoginFormLoading } from '../../model/selectors/getLoginFormLoading/getLoginFormLoading';
 import { getLoginFormError } from '../../model/selectors/getLoginFormError/getLoginFormError';
@@ -34,6 +37,8 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const isLoading = useSelector(getLoginFormLoading);
     const error = useSelector(getLoginFormError);
 
+    const navigate = useNavigate();
+
     const onChangeLogin = useCallback((value: string) => {
         dispatch(loginActions.setLogin(value));
     }, [dispatch]);
@@ -46,8 +51,10 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         const result = await dispatch(fetchUserByLogin({ login, password }));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
+            const user = result.payload as User;
+            navigate(`${RoutePath.profile}${user.id}`);
         }
-    }, [dispatch, login, password, onSuccess]);
+    }, [dispatch, login, password, onSuccess, navigate]);
 
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {

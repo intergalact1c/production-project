@@ -13,6 +13,7 @@ interface InputProps extends HTMLInputProps {
     placeholder?: string;
     autoFocus?: boolean;
     readonly?: boolean;
+    mwa?: boolean;
 }
 
 const charSize = 7.33;
@@ -26,6 +27,7 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         autoFocus = false,
         readonly = false,
+        mwa = false,
         ...rest
     } = props;
 
@@ -91,7 +93,7 @@ export const Input = memo((props: InputProps) => {
     return (
         <div className={classNames(cls.InputWrapper, mods, [className])}>
             {placeholder && (
-                <div className={cls.placeholder}>
+                <div className={classNames(cls.placeholder, { mw_a: mwa }, [])}>
                     <span>{placeholder}</span>
                 </div>
             )}
