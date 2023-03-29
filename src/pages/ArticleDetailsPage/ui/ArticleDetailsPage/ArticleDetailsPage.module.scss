@@ -3,8 +3,7 @@
     margin-bottom: 15px;
 }
 
-.backToList {
-    display: flex;
-    margin-left: auto;
-    margin-bottom: 20px;
+.recommendations {
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }

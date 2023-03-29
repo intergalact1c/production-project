@@ -1,23 +1,30 @@
-import React, { memo, Suspense, useCallback } from 'react';
+import React, {
+    memo, Suspense, useCallback, useEffect,
+} from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { ArticleDetails } from 'entities/Article';
-import { useNavigate, useParams } from 'react-router-dom';
+import { ArticleDetails, ArticleList } from 'entities/Article';
+import { useParams } from 'react-router-dom';
 import { Text } from 'shared/ui/Text/Text';
 import { CommentList } from 'entities/Comment';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-// import AddCommentForm from 'features/AddCommentForm/ui/AddCommentForm/AddCommentForm';
 import { AddCommentForm } from 'features/AddCommentForm';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { PageWrapper } from 'widgets/Page';
+import { ArticleDetailsHeader } from '../../ui/ArticleDetailsHeader/ArticleDetailsHeader';
+import { articleDetailsPageReducer } from '../../model/slices';
+import {
+    fetchArticleRecommendations,
+} from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
+import {
+    getArticleRecommendations,
+} from '../../model/slices/articleDetailsRecommendationsSlice';
+import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { addCommentFormArticle } from '../../model/services/addCommentFormArticle/addCommentFormArticle';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
-import { articleDetailsCommentsReducer, getArticleComments } from '../../model/slices/articleDetailsCommentsSlice';
+import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice';
 import cls from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
@@ -25,7 +32,7 @@ interface ArticleDetailsPageProps {
 }
 
 const reducers: ReducersList = {
-    articleDetailsComments: articleDetailsCommentsReducer,
+    articleDetailsPage: articleDetailsPageReducer,
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
@@ -34,12 +41,9 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
     // const error = useSelector(getArticleCommentsError);
+    const recommendations = useSelector(getArticleRecommendations.selectAll);
+    const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-
-    const onBackToList = useCallback(() => {
-        navigate(RoutePath.articles);
-    }, [navigate]);
 
     const onSendComment = useCallback((text: string) => {
         dispatch(addCommentFormArticle(text));
@@ -47,9 +51,17 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 
     const articleId = __PROJECT__ !== 'storybook' ? id : '1';
 
-    useInitialEffect(() => {
+    useEffect(() => {
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchCommentsByArticleId(articleId));
+            dispatch(fetchArticleRecommendations());
+        }
+    }, [dispatch, articleId]);
+
+    /* useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(articleId));
-    });
+        dispatch(fetchArticleRecommendations());
+    }); */
 
     if (!articleId) {
         return (
@@ -62,8 +74,15 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <PageWrapper className={classNames('', {}, [className])}>
-                <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList} className={cls.backToList}>{t('Назад')}</Button>
+                <ArticleDetailsHeader />
                 <ArticleDetails articleId={articleId} />
+                <Text title={t('Рекомендации')} className={cls.commentsTitle} />
+                <ArticleList
+                    articles={recommendations}
+                    isLoading={recommendationsIsLoading}
+                    className={cls.recommendations}
+                    target="_blank"
+                />
                 <Text title={t('Комментарии')} className={cls.commentsTitle} />
                 <Suspense fallback="">
                     <AddCommentForm onSendComment={onSendComment} />

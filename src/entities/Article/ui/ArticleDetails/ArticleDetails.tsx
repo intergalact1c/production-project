@@ -56,9 +56,11 @@ export const ArticleDetails = memo(({ className, articleId }: ArticleDetailsProp
     const error = useSelector(getArticleDetailsError);
     const { t } = useTranslation('article-details');
 
-    useInitialEffect(() => {
-        dispatch(fetchArticlesById(articleId));
-    });
+    useEffect(() => {
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchArticlesById(articleId));
+        }
+    }, [dispatch, articleId]);
 
     let content;
 

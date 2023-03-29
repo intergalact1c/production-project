@@ -21,7 +21,8 @@ export function useInfiniteScroll({ callback, triggerRef, wrapperRef }:UseInfini
                 const w = wrapperRef.current.getBoundingClientRect();
                 const t = triggerRef.current.getBoundingClientRect();
 
-                if (entry.isIntersecting && t.bottom >= w.height) {
+                // if (entry.isIntersecting && t.bottom >= w.height) {
+                if (entry.isIntersecting) {
                     callback();
                 }
             }, options);
