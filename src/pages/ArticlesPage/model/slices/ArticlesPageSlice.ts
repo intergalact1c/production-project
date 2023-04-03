@@ -27,16 +27,20 @@ const articlesPageSlice = createSlice({
         page: 1,
         hasMore: true,
         _inited: false,
-        limit: 9,
+        // limit: 9,
+        limit: 8,
         sort: ArticleSortField.CREATED,
         search: '',
         order: 'asc',
         type: ArticleType.ALL,
+        isTriggerVisible: true,
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
-            state.view = action.payload;
-            localStorage.setItem(ARTICLES_VIEW_LS_KEY, action.payload);
+            const view = action.payload;
+            state.view = view;
+            // state.limit = view === ArticleView.LIST ? 4 : 9;
+            localStorage.setItem(ARTICLES_VIEW_LS_KEY, view);
         },
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
@@ -53,10 +57,14 @@ const articlesPageSlice = createSlice({
         setType: (state, action: PayloadAction<ArticleType>) => {
             state.type = action.payload;
         },
+        setTriggerVisible: (state, action: PayloadAction<boolean>) => {
+            state.isTriggerVisible = action.payload;
+        },
         initState: (state) => {
             const view = localStorage.getItem(ARTICLES_VIEW_LS_KEY) as ArticleView;
             state.view = view;
-            state.limit = view === ArticleView.LIST ? 4 : 9;
+            // state.limit = view === ArticleView.LIST ? 4 : 9;
+            state.limit = 8;
             state._inited = true;
         },
     },
@@ -65,6 +73,7 @@ const articlesPageSlice = createSlice({
             .addCase(fetchArticles.pending, (state, action) => {
                 state.error = undefined;
                 state.isLoading = true;
+                state.isTriggerVisible = false;
 
                 if (action.meta.arg.replace) {
                     articlesAdapter.removeAll(state);
@@ -72,12 +81,8 @@ const articlesPageSlice = createSlice({
             })
             .addCase(fetchArticles.fulfilled, (state, action) => {
                 state.isLoading = false;
-                // state.hasMore = action.payload.length >= state.limit;
-                const view = localStorage.getItem(ARTICLES_VIEW_LS_KEY) as ArticleView;
-                // console.log(view);
-                state.hasMore = action.payload.length > 0 && (
-                    view === ArticleView.LIST ? state.ids.length !== 16 : state.ids.length !== 18
-                );
+                state.hasMore = action.payload.length >= state.limit;
+                // console.log(state.limit);
                 // console.log(action.payload.length);
                 // console.log(state.ids.length);
 
@@ -90,6 +95,7 @@ const articlesPageSlice = createSlice({
             .addCase(fetchArticles.rejected, (state, action) => {
                 state.error = action.payload;
                 state.isLoading = false;
+                state.isTriggerVisible = true;
             });
     },
 });

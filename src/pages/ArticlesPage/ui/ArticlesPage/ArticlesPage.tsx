@@ -1,4 +1,6 @@
-import React, { memo, useCallback } from 'react';
+import React, {
+    memo, MutableRefObject, useCallback, useEffect, useRef,
+} from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleList, ArticleView } from 'entities/Article';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -10,8 +12,12 @@ import { ArticlesPageFilters } from 'pages/ArticlesPage/ui/ArticlesPageFilters/A
 import { useSearchParams } from 'react-router-dom';
 import { fetchNextArticles } from '../../model/services/fetchNextArticles/fetchNextArticles';
 import { initArticlePage } from '../../model/services/initArticlePage/initArticlePage';
-import { getArticlesPageIsLoading, getArticlesPageView } from '../../model/selectors/articlesPageSelectors';
-import { articlesPageReducer, getArticles } from '../../model/slices/ArticlesPageSlice';
+import {
+    getArticlesPageIsLoading, getArticlesPageLimit, getArticlesPageNumber,
+    getArticlesPageTriggerVisible,
+    getArticlesPageView,
+} from '../../model/selectors/articlesPageSelectors';
+import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/ArticlesPageSlice';
 
 interface ArticlesPageProps {
     className?: string;
@@ -27,10 +33,18 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     const isLoading = useSelector(getArticlesPageIsLoading);
     const view = useSelector(getArticlesPageView);
     const [searchParams] = useSearchParams();
+    const isTriggerVisible = useSelector(getArticlesPageTriggerVisible);
+    const limit = useSelector(getArticlesPageLimit);
 
     const onLoadNextPart = useCallback(() => {
         dispatch(fetchNextArticles());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (articles.length >= limit) {
+            dispatch(articlesPageActions.setTriggerVisible(true));
+        }
+    }, [articles, dispatch, limit]);
 
     useInitialEffect(() => {
         dispatch(initArticlePage(searchParams));
@@ -38,7 +52,11 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <PageWrapper className={classNames('', {}, [className])} onScrollEnd={onLoadNextPart}>
+            <PageWrapper
+                className={classNames('', {}, [className])}
+                onScrollEnd={onLoadNextPart}
+                isTriggerVisible={isTriggerVisible}
+            >
                 <ArticlesPageFilters />
                 <ArticleList
                     isLoading={isLoading}

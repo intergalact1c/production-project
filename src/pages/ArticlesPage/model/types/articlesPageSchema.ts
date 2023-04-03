@@ -18,4 +18,5 @@ export interface ArticlesPageSchema extends EntityState<Article>{
     search: string;
     type: ArticleType;
     _inited: boolean;
+    isTriggerVisible: boolean;
 }

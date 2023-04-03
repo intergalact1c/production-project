@@ -1,7 +1,7 @@
 import React, {
     memo, MutableRefObject, ReactNode, UIEvent, useRef,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { useInfiniteScroll } from 'shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getScrollRecoveryPath, scrollRecoveryActions } from 'widgets/Page';
@@ -16,9 +16,12 @@ interface PageWrapperProps {
     className?: string;
     children: ReactNode;
     onScrollEnd?: () => void;
+    isTriggerVisible?: boolean;
 }
 
-export const PageWrapper = memo(({ className, children, onScrollEnd }: PageWrapperProps) => {
+export const PageWrapper = memo(({
+    className, children, onScrollEnd, isTriggerVisible = true,
+}: PageWrapperProps) => {
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const dispatch = useAppDispatch();
@@ -43,6 +46,10 @@ export const PageWrapper = memo(({ className, children, onScrollEnd }: PageWrapp
         wrapperRef.current.scrollTop = scrollPosition;
     });
 
+    const mods: Mods = {
+        [cls.hide]: !isTriggerVisible,
+    };
+
     return (
         <section
             ref={wrapperRef}
@@ -50,7 +57,7 @@ export const PageWrapper = memo(({ className, children, onScrollEnd }: PageWrapp
             onScroll={onScroll}
         >
             {children}
-            {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
+            {onScrollEnd ? <div className={classNames(cls.trigger, mods, [])} ref={triggerRef} /> : null}
         </section>
     );
 });
