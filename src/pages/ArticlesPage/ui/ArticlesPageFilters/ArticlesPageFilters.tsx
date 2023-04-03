@@ -71,7 +71,7 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
     }, [dispatch, fetchData]);
 
     return (
-        <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             <div className={cls.toolbar}>
                 <ArticleSortSelector
                     order={order}

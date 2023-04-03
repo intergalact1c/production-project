@@ -1,8 +1,7 @@
 import React, {
-    memo, MutableRefObject, useCallback, useEffect, useRef,
+    memo, useCallback, useEffect,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleList, ArticleView } from 'entities/Article';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -10,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { PageWrapper } from 'widgets/Page';
 import { ArticlesPageFilters } from 'pages/ArticlesPage/ui/ArticlesPageFilters/ArticlesPageFilters';
 import { useSearchParams } from 'react-router-dom';
+import { ArticleList, ArticleVirtualizedList } from 'entities/Article';
 import { fetchNextArticles } from '../../model/services/fetchNextArticles/fetchNextArticles';
 import { initArticlePage } from '../../model/services/initArticlePage/initArticlePage';
 import {
@@ -58,11 +58,19 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
                 isTriggerVisible={isTriggerVisible}
             >
                 <ArticlesPageFilters />
-                <ArticleList
-                    isLoading={isLoading}
-                    articles={articles}
-                    view={view}
-                />
+                {__PROJECT__ !== 'storybook' ? (
+                    <ArticleVirtualizedList
+                        isLoading={isLoading}
+                        articles={articles}
+                        view={view}
+                    />
+                ) : (
+                    <ArticleList
+                        isLoading={isLoading}
+                        articles={articles}
+                        view={view}
+                    />
+                )}
             </PageWrapper>
         </DynamicModuleLoader>
     );

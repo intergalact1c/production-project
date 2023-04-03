@@ -1,0 +1,103 @@
+import React, { HTMLAttributeAnchorTarget, memo } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { ArticleListItemSkeleton } from 'entities/Article/ui/ArticleListItem/ArticleListItemSkeleton';
+import { useTranslation } from 'react-i18next';
+import { Text, TextSize } from 'shared/ui/Text/Text';
+import {
+    List, ListRowProps, WindowScroller,
+} from 'react-virtualized';
+import { PAGE_ID } from 'widgets/Page/ui/PageWrapper/PageWrapper';
+import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
+import { Article, ArticleView } from '../../model/types/article';
+import cls from './ArticleVirtualizedList.module.scss';
+
+interface ArticleListProps {
+    className?: string;
+    articles: Article[];
+    isLoading?: boolean;
+    view?: ArticleView;
+    target?: HTMLAttributeAnchorTarget;
+}
+
+const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.TILE ? 8 : 4).fill(0).map((item, index) => (
+    <ArticleListItemSkeleton
+        key={index}
+        view={view}
+    />
+));
+
+export const ArticleVirtualizedList = memo(({
+    className, articles, isLoading, view = ArticleView.TILE, target,
+}: ArticleListProps) => {
+    const { t } = useTranslation('articles');
+
+    const isList = view === ArticleView.LIST;
+    const articlesPerRow = isList ? 1 : 4;
+    const rowCount = isList ? articles.length : Math.ceil(articles.length / articlesPerRow);
+
+    const rowRender = ({
+        index, key, style,
+    }: ListRowProps) => {
+        const items = [];
+        const fromIndex = index * articlesPerRow;
+        const toIndex = Math.min(fromIndex + articlesPerRow, articles.length);
+
+        for (let i = fromIndex; i < toIndex; i += 1) {
+            items.push(
+                <ArticleListItem
+                    key={articles[i].id}
+                    article={articles[i]}
+                    view={view}
+                    target={target}
+                />,
+            );
+        }
+
+        return (
+            <div
+                key={key}
+                style={style}
+                className={classNames(cls.articlesRow, {}, [])}
+            >
+                {items}
+            </div>
+        );
+    };
+
+    if (!isLoading && !articles.length) {
+        return <Text size={TextSize.L} title={t('Статьи не найдены')} />;
+    }
+
+    return (
+        <WindowScroller
+            scrollElement={document.getElementById(PAGE_ID) as Element}
+        >
+            {({
+                height,
+                width,
+                registerChild,
+                onChildScroll,
+                isScrolling,
+                scrollTop,
+            }) => (
+                <div
+                    ref={registerChild}
+                    className={classNames(cls.ArticleList, {}, [className, cls[view]])}
+                >
+                    <List
+                        autoHeight
+                        width={width || 1292}
+                        height={height ?? 546}
+                        rowCount={rowCount}
+                        rowHeight={isList ? 546 : 450}
+                        rowRenderer={rowRender}
+                        onScroll={onChildScroll}
+                        isScrolling={isScrolling}
+                        scrollTop={scrollTop}
+                    />
+                    {isLoading && getSkeletons(view)}
+                </div>
+            )}
+        </WindowScroller>
+    );
+});

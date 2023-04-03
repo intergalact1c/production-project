@@ -19,6 +19,8 @@ interface PageWrapperProps {
     isTriggerVisible?: boolean;
 }
 
+export const PAGE_ID = 'PAGE_ID';
+
 export const PageWrapper = memo(({
     className, children, onScrollEnd, isTriggerVisible = true,
 }: PageWrapperProps) => {
@@ -52,12 +54,15 @@ export const PageWrapper = memo(({
 
     return (
         <section
+            id={PAGE_ID}
             ref={wrapperRef}
             className={classNames(cls.PageWrapper, {}, [className])}
             onScroll={onScroll}
         >
-            {children}
-            {onScrollEnd ? <div className={classNames(cls.trigger, mods, [])} ref={triggerRef} /> : null}
+            <div className={cls.inner}>
+                {children}
+                {onScrollEnd ? <div className={classNames(cls.trigger, mods, [])} ref={triggerRef} /> : null}
+            </div>
         </section>
     );
 });

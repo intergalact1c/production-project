@@ -67,7 +67,7 @@ export const ArticleListItem = memo(({
                                 backgroundColor: '#d4b830',
                             }}
                         />
-                        {textBlock && textBlock.paragraphs[0]}
+                        {textBlock && <Text text={textBlock.paragraphs[0]} className={cls.preview} />}
                     </div>
                     <div className={cls.footer}>
                         <AppLink target={target} to={RoutePath.article_details + article.id}>

@@ -2,7 +2,6 @@
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 30px;
-    cursor: pointer;
 }
 
 .views {
@@ -18,6 +17,7 @@
     display: block;
     flex-shrink: 0;
     width: 308px;
+    cursor: pointer;
 
     .image {
         position: relative;
@@ -65,7 +65,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 15px;
+        margin-bottom: 14px;
 
         .type {
             padding-right: 10px;
@@ -82,6 +82,7 @@
 
     .title {
         height: 64px;
+        overflow: hidden;
     }
 
     &:hover {
@@ -143,6 +144,11 @@
             border-radius: 10px;
             overflow: hidden;
             margin-bottom: 20px;
+        }
+
+        .pereview {
+            height: 48px;
+            overflow: hidden;
         }
     }
 
