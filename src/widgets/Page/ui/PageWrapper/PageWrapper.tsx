@@ -4,12 +4,13 @@ import React, {
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { useInfiniteScroll } from 'shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getScrollRecoveryPath, scrollRecoveryActions } from 'widgets/Page';
 import { useLocation } from 'react-router-dom';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useSelector } from 'react-redux';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
+import { getScrollRecoveryPath } from '../ScrollRecovery/model/selectors/scrollRecovery';
+import { scrollRecoveryActions } from '../ScrollRecovery/model/slices/scrollRecoverySlice';
 import cls from './PageWrapper.module.scss';
 
 interface PageWrapperProps {

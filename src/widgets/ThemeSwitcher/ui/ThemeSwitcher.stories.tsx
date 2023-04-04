@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
+import { ThemeSwitcher } from '../ui/ThemeSwitcher';
 
 export default {
     title: 'widget/ThemeSwitcher',

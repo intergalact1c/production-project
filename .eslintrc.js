@@ -21,6 +21,7 @@ module.exports = {
         '@typescript-eslint',
         'i18next',
         'react-hooks',
+        'isp-web-plugin',
     ],
     rules: {
         'react/jsx-indent': [2, 4], // отступы для jsx. 2 - означает, что будет выбрасываться ошибка при не соблюдении правила
@@ -47,6 +48,7 @@ module.exports = {
         'no-param-reassign': 'off', // ESLint: Assignment to property of function parameter 'state'.(no-param-reassign)
         'no-undef': 'off',
         'react/no-array-index-key': 'off', // index as key
+        'isp-web-plugin/path-checker': 'error',
     },
     globals: {
         __IS_DEV__: true,

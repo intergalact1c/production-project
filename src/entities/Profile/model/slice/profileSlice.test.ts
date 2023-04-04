@@ -1,7 +1,8 @@
-import { ProfileSchema, updateProfileData, ValidateProfileError } from 'entities/Profile';
 import AvatarImg from 'shared/assets/tests/avatar.png';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { ProfileSchema, ValidateProfileError } from '../types/profile';
+import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 import { profileActions, profileReducer } from './profileSlice';
 
 const data = {

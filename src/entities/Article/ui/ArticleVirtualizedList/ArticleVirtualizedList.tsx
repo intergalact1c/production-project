@@ -1,12 +1,12 @@
 import React, { HTMLAttributeAnchorTarget, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleListItemSkeleton } from 'entities/Article/ui/ArticleListItem/ArticleListItemSkeleton';
 import { useTranslation } from 'react-i18next';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import {
     List, ListRowProps, WindowScroller,
 } from 'react-virtualized';
 import { PAGE_ID } from 'widgets/Page/ui/PageWrapper/PageWrapper';
+import { ArticleListItemSkeleton } from '../../ui/ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { Article, ArticleView } from '../../model/types/article';
 import cls from './ArticleVirtualizedList.module.scss';
