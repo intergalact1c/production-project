@@ -10,6 +10,7 @@ import {
 } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getUserAuthData } from 'entities/User';
+import { HStack } from 'shared/ui/Stack';
 import cls from './ProfilePageHeader.module.scss';
 
 interface ProfilePageHeaderProps {
@@ -40,7 +41,7 @@ export const ProfilePageHeader = ({ classname }: ProfilePageHeaderProps) => {
     }, [dispatch]);
 
     return (
-        <div className={classNames(cls.ProfilePageHeader, {}, [classname])}>
+        <HStack className={classNames(cls.ProfilePageHeader, {}, [classname])}>
             <Text title={t('Профиль пользователя')} className={cls.text} />
             {isEditable && (
                 <div>
@@ -72,6 +73,6 @@ export const ProfilePageHeader = ({ classname }: ProfilePageHeaderProps) => {
                     )}
                 </div>
             ) }
-        </div>
+        </HStack>
     );
 };

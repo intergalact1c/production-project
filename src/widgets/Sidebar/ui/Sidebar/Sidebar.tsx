@@ -5,6 +5,7 @@ import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { VStack } from 'shared/ui/Stack';
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 import { SideBarItem } from '../SideBarItem/SideBarItem';
 import cls from './Sidebar.module.scss';
@@ -51,11 +52,11 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
             >
                 {collapsed ? '→' : '←'}
             </Button>
-            <nav className={cls.links}>
-                <ul>
+            <div role="navigation">
+                <VStack role="list" gap="16" align="start">
                     {itemsList}
-                </ul>
-            </nav>
+                </VStack>
+            </div>
             <div className={cls.switchers}>
                 <ThemeSwitcher />
                 <LanguageSwitcher className={cls.lang} short={collapsed} />

@@ -5,5 +5,13 @@
 
 .recommendations {
     flex-wrap: nowrap;
+    gap: 20px;
+    margin-left: 0;
+    margin-right: 0;
     overflow-x: auto;
+
+    > * {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }

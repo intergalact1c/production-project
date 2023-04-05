@@ -54,7 +54,7 @@ export const PageWrapper = memo(({
     };
 
     return (
-        <section
+        <main
             id={PAGE_ID}
             ref={wrapperRef}
             className={classNames(cls.PageWrapper, {}, [className])}
@@ -64,6 +64,6 @@ export const PageWrapper = memo(({
                 {children}
                 {onScrollEnd ? <div className={classNames(cls.trigger, mods, [])} ref={triggerRef} /> : null}
             </div>
-        </section>
+        </main>
     );
 });

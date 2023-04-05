@@ -1,7 +1,7 @@
 @import "../../../app/styles/mixins";
 
 .InputWrapper {
-    @include form-field;
+    overflow: hidden;
 }
 
 .placeholder {

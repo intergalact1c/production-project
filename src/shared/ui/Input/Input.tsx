@@ -2,6 +2,7 @@ import React, {
     InputHTMLAttributes, memo, SyntheticEvent, useEffect, useRef, useState,
 } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { HStack } from '../Stack/HStack/HStack';
 import cls from './Input.module.scss';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
@@ -91,7 +92,10 @@ export const Input = memo((props: InputProps) => {
     }, [inputWidth]);
 
     return (
-        <div className={classNames(cls.InputWrapper, mods, [className])}>
+        <HStack
+            justify="between"
+            className={classNames(cls.InputWrapper, mods, [className])}
+        >
             {placeholder && (
                 <div className={classNames(cls.placeholder, { mw_a: mwa }, [])}>
                     <span>{placeholder}</span>
@@ -117,7 +121,7 @@ export const Input = memo((props: InputProps) => {
                     />
                 )}
             </div>
-        </div>
+        </HStack>
 
     );
 });

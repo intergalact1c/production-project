@@ -39,6 +39,16 @@
     text-align: right;
 }
 
+.size_s {
+    .textTitle {
+        font: var(--font-m);
+    }
+
+    .textText {
+        font: var(--font-s);
+    }
+}
+
 .size_m {
     .textTitle {
         font: var(--font-l);

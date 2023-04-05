@@ -6,6 +6,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getArticleDetailsData } from 'entities/Article';
+import { HStack } from 'shared/ui/Stack';
 import { getCanEditArticle } from '../../model/selectors/article';
 import cls from './ArticleDetailsHeader.module.scss';
 
@@ -28,7 +29,7 @@ export const ArticleDetailsHeader = memo(({ className }: ArticleDetailsHeaderPro
     }, [navigate]);
 
     return (
-        <div className={classNames(cls.ArticleDetailsHeader, {}, [className])}>
+        <HStack justify="end" className={classNames(cls.ArticleDetailsHeader, {}, [className])}>
             {canEdit && (
                 <Button
                     theme={ButtonTheme.OUTLINE}
@@ -39,6 +40,6 @@ export const ArticleDetailsHeader = memo(({ className }: ArticleDetailsHeaderPro
                 </Button>
             )}
             <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList} className={cls.bth}>{t('Назад')}</Button>
-        </div>
+        </HStack>
     );
 });

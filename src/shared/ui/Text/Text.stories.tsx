@@ -54,6 +54,20 @@ ErrorDark.args = {
 };
 ErrorDark.decorators = [ThemeDecorator(Theme.DARK)];
 
+export const SizeS = Template.bind({});
+SizeS.args = {
+    title: 'Заголовок',
+    text: 'Lorem ipsum — классический текст-«рыба». Является искажённым отрывком из философского трактата Марка Туллия Цицерона',
+    size: TextSize.S,
+};
+
+export const SizeM = Template.bind({});
+SizeM.args = {
+    title: 'Заголовок',
+    text: 'Lorem ipsum — классический текст-«рыба». Является искажённым отрывком из философского трактата Марка Туллия Цицерона',
+    size: TextSize.M,
+};
+
 export const SizeL = Template.bind({});
 SizeL.args = {
     title: 'Заголовок',

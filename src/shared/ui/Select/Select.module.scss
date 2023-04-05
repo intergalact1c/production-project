@@ -1,7 +1,7 @@
 @import "../../../app/styles/mixins";
 
 .SelectWrapper {
-    @include form-field;
+    overflow: hidden;
 }
 
 label {

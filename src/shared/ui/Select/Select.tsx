@@ -1,5 +1,6 @@
 import React, { ChangeEvent, memo, useMemo } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { HStack } from '../Stack/HStack/HStack';
 import cls from './Select.module.scss';
 
 export interface SelectOption<T extends string> {
@@ -46,7 +47,10 @@ export const Select = typedMemo(<T extends string>({
     };
 
     return (
-        <div className={classNames(cls.SelectWrapper, {}, [className])}>
+        <HStack
+            justify="between"
+            className={classNames(cls.SelectWrapper, {}, [className])}
+        >
             {label && <label htmlFor={selectId} className={classNames('', mods, [])}><span>{label}</span></label>}
             <select
                 id={selectId}
@@ -56,6 +60,6 @@ export const Select = typedMemo(<T extends string>({
             >
                 {optionsList}
             </select>
-        </div>
+        </HStack>
     );
 });

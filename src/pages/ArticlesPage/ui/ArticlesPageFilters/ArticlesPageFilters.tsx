@@ -12,6 +12,7 @@ import { SortOrder } from 'shared/types';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 import { ArticleType } from 'entities/Article/model/types/article';
 import { ArticleTypeTabs } from 'features/ArticleTypeTabs/ArticleTypeTabs';
+import { HStack } from 'shared/ui/Stack';
 import { fetchArticles } from '../../model/services/fetchArticles/fetchArticles';
 import { articlesPageActions } from '../../model/slices/ArticlesPageSlice';
 import {
@@ -72,7 +73,7 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
 
     return (
         <div className={classNames('', {}, [className])}>
-            <div className={cls.toolbar}>
+            <HStack justify="between" className={cls.toolbar}>
                 <ArticleSortSelector
                     order={order}
                     sort={sort}
@@ -80,7 +81,7 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
                     onChangeSort={onChangeSort}
                 />
                 <ArticleViewSelector view={view} onViewClick={onChangeView} />
-            </div>
+            </HStack>
             <Card className={cls.search}>
                 <Input
                     mwa

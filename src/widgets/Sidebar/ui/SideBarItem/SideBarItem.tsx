@@ -29,11 +29,11 @@ export const SideBarItem = memo(({ item, collapsed }: SideBarItemProps) => {
     }
 
     return (
-        <li className={classNames(cls.SideBarItem, {}, [])}>
+        <div role="listitem" className={classNames(cls.SideBarItem, {}, [])}>
             <AppLink to={path} theme={AppLinkTheme.SECONDARY} title={i18nText}>
                 <Icon />
                 {!collapsed && i18nText}
             </AppLink>
-        </li>
+        </div>
     );
 });

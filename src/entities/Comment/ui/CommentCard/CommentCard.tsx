@@ -5,6 +5,7 @@ import { Text } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { HStack } from 'shared/ui/Stack';
 import { CommentType } from '../../model/types/comment';
 import cls from './CommentCard.module.scss';
 
@@ -18,10 +19,10 @@ export const CommentCard = memo(({ className, comment, isLoading }: CommentCardP
     if (isLoading) {
         return (
             <div className={classNames(cls.CommentCard, {}, [className, cls.loading])}>
-                <div className={cls.header}>
+                <HStack className={cls.header}>
                     <Skeleton width={30} height={30} borderRadius="50%" className={cls.avatar} />
                     <Skeleton width={100} height={16} />
-                </div>
+                </HStack>
                 <Skeleton width="100%" height={50} />
             </div>
         );

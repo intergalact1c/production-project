@@ -39,7 +39,12 @@ module.exports = {
         'import/extensions': 'off', // импорты
         'import/no-extraneous-dependencies': 'warn', // ESLint: 'webpack' should be listed in the project's dependencies, not devDependencies.(import/no-extraneous-dependencies)
         'no-underscore-dangle': 'off', // двойное подчеркивание
-        'i18next/no-literal-string': [2, { markupOnly: true, ignoreAttribute: ['data-testid', 'to', 'selectId', 'target'] }],
+        'i18next/no-literal-string': [2, {
+            markupOnly: true,
+            ignoreAttribute: [
+                'data-testid', 'to', 'selectId', 'target', 'direction', 'align', 'justify', 'role'],
+        },
+        ],
         'max-len': [2, { code: 130, ignoreComments: true }], // длина строки
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
