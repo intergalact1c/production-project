@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PageWrapper } from 'widgets/Page';
 // import { BugButton } from 'app/providers/ErrorBoundary';

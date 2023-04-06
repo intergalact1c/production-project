@@ -42,7 +42,9 @@ module.exports = {
         'i18next/no-literal-string': [2, {
             markupOnly: true,
             ignoreAttribute: [
-                'data-testid', 'to', 'selectId', 'target', 'direction', 'align', 'justify', 'role'],
+                'data-testid', 'to', 'selectId', 'target', 'direction', 'align', 'justify', 'role', 'as', 'defaultValue',
+                'direction', 'label',
+            ],
         },
         ],
         'max-len': [2, { code: 130, ignoreComments: true }], // длина строки
