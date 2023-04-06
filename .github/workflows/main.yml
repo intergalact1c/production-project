@@ -36,4 +36,3 @@ jobs:
       - name: screenshot testing
         run: npm run test:ui:ci
         if: always()
-Выберите значение: Выберите значение
