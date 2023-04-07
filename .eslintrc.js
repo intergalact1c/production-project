@@ -43,7 +43,7 @@ module.exports = {
             markupOnly: true,
             ignoreAttribute: [
                 'data-testid', 'to', 'selectId', 'target', 'direction', 'align', 'justify', 'role', 'as', 'defaultValue',
-                'direction', 'label',
+                'direction', 'label', 'refName',
             ],
         },
         ],
