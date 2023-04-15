@@ -25,6 +25,7 @@ describe('fetchNextArticles', () => {
         // 2 раз - запрос успешно выполнился и вернулось состояние fulfilled
         // 3 и 4 разы - вызвали внутри самого action (22,23 строки файла fetchNextArticles)
         // expect(fetchArticles).toHaveBeenCalledWith({ page: 3 }); // page: 2 + 1
+        expect(fetchArticles).toHaveBeenCalled(); // dispatch(fetchArticles({})) - перенесли получение page в fetchArticles
     });
     test('fetchNextArticles not called', async () => {
         const thunk = new TestAsyncThunk(fetchNextArticles, {

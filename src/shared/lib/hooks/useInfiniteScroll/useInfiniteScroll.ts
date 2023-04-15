@@ -21,6 +21,7 @@ export function useInfiniteScroll({
 
             observer = new IntersectionObserver(([entry]) => {
                 if (entry.isIntersecting) {
+                    // console.log('isIntersecting');
                     callback();
                 }
             }, options);

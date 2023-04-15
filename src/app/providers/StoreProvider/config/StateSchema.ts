@@ -4,7 +4,7 @@ import { LoginSchema } from 'features/AuthByLogin';
 import {
     AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { ProfileSchema } from 'entities/Profile';
+import { ProfileSchema } from 'features/EditableProfileCard';
 import { AxiosInstance } from 'axios';
 // import { NavigateOptions } from 'react-router';
 // import { To } from 'react-router-dom';
@@ -15,11 +15,14 @@ import {
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { ScrollRecoverySchema } from 'widgets/Page';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
     counter: CounterSchema;
     user: UserSchema;
     scrollRecovery: ScrollRecoverySchema;
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
+
     // Асинхронные редьюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;

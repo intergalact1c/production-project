@@ -27,13 +27,12 @@ const articlesPageSlice = createSlice({
         page: 1,
         hasMore: true,
         _inited: false,
-        // limit: 9,
         limit: 8,
         sort: ArticleSortField.CREATED,
         search: '',
         order: 'asc',
         type: ArticleType.ALL,
-        isTriggerVisible: true,
+        isTriggerVisible: false,
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {

@@ -1,4 +1,6 @@
-import React, { HTMLAttributeAnchorTarget, memo } from 'react';
+import React, {
+    HTMLAttributeAnchorTarget, memo, MutableRefObject, useRef,
+} from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Text, TextSize } from 'shared/ui/Text/Text';
@@ -6,9 +8,10 @@ import {
     List, ListRowProps, WindowScroller,
 } from 'react-virtualized';
 import { PAGE_ID } from 'widgets/Page/ui/PageWrapper/PageWrapper';
+import { ArticleView } from '../../model/const/consts';
 import { ArticleListItemSkeleton } from '../../ui/ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
-import { Article, ArticleView } from '../../model/types/article';
+import { Article } from '../../model/types/article';
 import cls from './ArticleVirtualizedList.module.scss';
 
 interface ArticleListProps {
@@ -30,7 +33,7 @@ export const ArticleVirtualizedList = memo(({
     className, articles, isLoading, view = ArticleView.TILE, target,
 }: ArticleListProps) => {
     const { t } = useTranslation('articles');
-
+    const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const isList = view === ArticleView.LIST;
     const articlesPerRow = isList ? 1 : 4;
     const rowCount = isList ? articles.length : Math.ceil(articles.length / articlesPerRow);
@@ -69,35 +72,41 @@ export const ArticleVirtualizedList = memo(({
     }
 
     return (
-        <WindowScroller
-            scrollElement={document.getElementById(PAGE_ID) as Element}
-        >
-            {({
-                height,
-                width,
-                registerChild,
-                onChildScroll,
-                isScrolling,
-                scrollTop,
-            }) => (
-                <div
-                    ref={registerChild}
-                    className={classNames(cls.ArticleList, {}, [className, cls[view]])}
-                >
-                    <List
-                        autoHeight
-                        width={width || 1292}
-                        height={height ?? 546}
-                        rowCount={rowCount}
-                        rowHeight={isList ? 546 : 450}
-                        rowRenderer={rowRender}
-                        onScroll={onChildScroll}
-                        isScrolling={isScrolling}
-                        scrollTop={scrollTop}
-                    />
-                    {isLoading && getSkeletons(view)}
-                </div>
-            )}
-        </WindowScroller>
+        <div ref={containerRef}>
+            {/* @ts-ignore */}
+            <WindowScroller
+                // scrollElement={containerRef.current}
+                scrollElement={document.getElementById(PAGE_ID) as Element}
+            >
+                {({
+                    height,
+                    width,
+                    registerChild,
+                    onChildScroll,
+                    isScrolling,
+                    scrollTop,
+                }) => (
+                    <div
+                        // @ts-ignore
+                        ref={registerChild}
+                        className={classNames(cls.ArticleList, {}, [className, cls[view]])}
+                    >
+                        {/* @ts-ignore */}
+                        <List
+                            autoHeight
+                            width={width || 1292}
+                            height={height || 546} // height={height ?? 546}
+                            rowCount={rowCount}
+                            rowHeight={isList ? 546 : 450}
+                            rowRenderer={rowRender}
+                            onScroll={onChildScroll}
+                            isScrolling={isScrolling}
+                            scrollTop={scrollTop}
+                        />
+                        {isLoading && getSkeletons(view)}
+                    </div>
+                )}
+            </WindowScroller>
+        </div>
     );
 });

@@ -1,0 +1,66 @@
+diff --git a/node_modules/@loki/target-chrome-core/src/create-chrome-target.js b/node_modules/@loki/target-chrome-core/src/create-chrome-target.js
+index f2e9972..0e5a746 100644
+--- a/node_modules/@loki/target-chrome-core/src/create-chrome-target.js
++++ b/node_modules/@loki/target-chrome-core/src/create-chrome-target.js
+@@ -239,11 +239,7 @@ function createChromeTarget(
+       }
+     };
+ 
+-    client.captureScreenshot = withRetries(
+-      options.chromeRetries,
+-      CAPTURING_SCREENSHOT_RETRY_BACKOFF
+-    )(
+-      withTimeout(
++    client.captureScreenshot = withTimeout(
+         CAPTURING_SCREENSHOT_TIMEOUT,
+         'captureScreenshot'
+       )(async (selector = 'body') => {
+@@ -317,8 +313,7 @@ function createChromeTarget(
+         }
+ 
+         return buffer;
+-      })
+-    );
++    });
+ 
+     return client;
+   }
+@@ -390,22 +385,24 @@ function createChromeTarget(
+       options.chromeSelector;
+     const url = getStoryUrl(storyId);
+ 
+-    const tab = await launchNewTab(tabOptions);
+-    let screenshot;
+-    try {
+-      await withTimeout(options.chromeLoadTimeout)(tab.loadUrl(url, selector));
+-      screenshot = await tab.captureScreenshot(selector);
+-    } catch (err) {
+-      if (err instanceof TimeoutError) {
+-        debug(`Timed out waiting for "${url}" to load`);
+-      } else {
++    return withRetries(options.chromeRetries, CAPTURING_SCREENSHOT_RETRY_BACKOFF)(async () => {
++      const tab = await launchNewTab(tabOptions);
++      let screenshot;
++      try {
++        await withTimeout(options.chromeLoadTimeout)(tab.loadUrl(url, selector));
++          screenshot = await tab.captureScreenshot(selector);
++          } catch (err) {
++        if (err instanceof TimeoutError) {
++          debug(`Timed out waiting for "${url}" to load`);
++        }
++
+         throw err;
+-      }
+-    } finally {
+-      await tab.close();
+-    }
++          } finally {
++        await tab.close();
++        }
+ 
+-    return screenshot;
++        return screenshot;
++      })();
+   }
+ 
+   return {

@@ -23,5 +23,6 @@
   "Некорректный регион": "Incorrect region",
   "Некорректная валюта": "Incorrect currency",
   "Данные не указаны": "Data not specified",
-  "Серверная ошибка при сохранении": "Server error on save"
+  "Серверная ошибка при сохранении": "Server error on save",
+  "Профиль не найден": "Profile not found"
 }

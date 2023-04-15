@@ -3,7 +3,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { LoginModal } from 'features/AuthByLogin';
-import { getUserAuthData, userActions } from 'entities/User';
+import {
+    getUserAuthData, isUserAdmin, isUserManager, userActions,
+} from 'entities/User';
 import { useDispatch, useSelector } from 'react-redux';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
@@ -21,6 +23,10 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const dispatch = useDispatch();
+    const isAdmin = useSelector(isUserAdmin);
+    const isManager = useSelector(isUserManager);
+
+    const isAdminPanelVisible = isAdmin || isManager;
 
     const onOpenModal = useCallback(() => {
         setIsModalOpen(true);
@@ -49,6 +55,10 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 </AppLink>
                 <DropDown
                     items={[
+                        ...(isAdminPanelVisible ? [{
+                            content: t('Админ панель'),
+                            href: RoutePath.admin_panel,
+                        }] : []),
                         {
                             content: t('Профиль пользователя'),
                             href: RoutePath.profile + authData.id,

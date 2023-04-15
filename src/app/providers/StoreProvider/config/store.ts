@@ -6,6 +6,7 @@ import { $api } from 'shared/api/api';
 // import { To } from 'react-router-dom';
 import { CombinedState, Reducer } from 'redux';
 import { scrollRecoveryReducer } from 'widgets/Page';
+import { rtkApi } from 'shared/api/rtkApi';
 import { createReducerManager } from './reducerManager';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 
@@ -14,14 +15,15 @@ export function createReduxStore(
     asyncReducers?: ReducersMapObject<StateSchema>,
     // navigate?: (to: To, options?: NavigateOptions) => void,
 ) {
-    const rootReducer: ReducersMapObject<StateSchema> = {
+    const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
         scrollRecovery: scrollRecoveryReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
     };
 
-    const reducerManager = createReducerManager(rootReducer);
+    const reducerManager = createReducerManager(rootReducers);
 
     const extraArg: ThunkExtraArg = {
         api: $api,
@@ -36,7 +38,7 @@ export function createReduxStore(
             thunk: {
                 extraArgument: extraArg,
             },
-        }),
+        }).concat(rtkApi.middleware),
     });
 
     // @ts-ignore

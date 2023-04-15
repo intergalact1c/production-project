@@ -14,5 +14,6 @@
   "Наука": "Science",
   "Экономика": "Economics",
   "Все статьи": "All articles",
-  "Статьи не найдены": "Articles not found"
+  "Статьи не найдены": "Articles not found",
+  "Ошибка при загрузке статей": "Error loading articles"
 }

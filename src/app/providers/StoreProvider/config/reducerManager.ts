@@ -19,7 +19,7 @@ export function createReducerManager(initialReducers: ReducersMapObject<StateSch
 
     return {
         getReducerMap: () => reducers,
-        getMountedReducers: () => mountedReducers, // getReducerMap - можно было использовать для задачи
+        getMountedReducers: () => mountedReducers, // getReducerMap - можно было использовать для задачи !!ПЕРЕДЕЛАТЬ!!
         // The root reducer function exposed by this object
         // This will be passed to the store
         reduce: (state: StateSchema, action: AnyAction) => {

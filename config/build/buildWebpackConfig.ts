@@ -13,7 +13,8 @@ export function buildWebpackConfig(
         mode,
         entry: paths.entry,
         output: {
-            filename: 'bundle.[contenthash].js',
+            // filename: 'bundle.[contenthash].js',
+            filename: '[name].[contenthash].js',
             path: paths.build,
             clean: true,
             publicPath: '/',

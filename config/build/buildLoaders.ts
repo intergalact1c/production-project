@@ -21,21 +21,23 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     };
 
     // Если не используем TS, то ставим babel-loader
-    const typeScriptLoader = {
+    /* const typeScriptLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        /* use: [
+        /!* use: [
             {
                 loader: 'ts-loader',
                 options: {
                     transpileOnly: true,
                 },
             },
-        ], */
+        ], *!/
         exclude: /node_modules/,
-    };
+    }; */
 
-    const babelLoader = buildBabelLoader(options.isDev);
+    const codeBabelLoader = buildBabelLoader({ ...options, isTsx: false });
 
-    return [fileLoader, svgLoader, babelLoader, typeScriptLoader, cssLoader];
+    const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTsx: true });
+
+    return [fileLoader, svgLoader, codeBabelLoader, tsxCodeBabelLoader, cssLoader];
 }

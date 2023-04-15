@@ -63,6 +63,16 @@ export default {
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
     },
 
+    reporters: [
+        'default', // дефолтный отчет в консоли
+        ['jest-html-reporters', {
+            publicPath: '<rootDir>/reports/unit',
+            filename: 'report.html',
+            // openReport: true,
+            inlineSource: true, // для сохранения отчета в виде одного объединенного файла
+        }],
+    ],
+
     // All imported modules in your tests should be mocked automatically
     // automock: false,
 
