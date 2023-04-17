@@ -1,0 +1,30 @@
+@import "../../../../../app/styles/mixins";
+
+.wrapper {
+    @include form-field-main;
+}
+
+.btn {
+    text-align: left;
+    padding: 5px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.options {
+    // width: 100%;
+    background: var(--listbox-bg);
+    position: absolute;
+    z-index: 99999;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.item {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.label {
+    @include form-field-text;
+}

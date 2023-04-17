@@ -1,9 +1,9 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import { avatarUrl } from 'shared/assets/tests/urls';
 import { Navbar } from './Navbar';
 
 export default {
@@ -17,7 +17,11 @@ export default {
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;
 
 const initialState = {
-    user: { authData: {} },
+    user: {
+        authData: {
+            avatar: avatarUrl,
+        },
+    },
 };
 
 export const Light = Template.bind({});
