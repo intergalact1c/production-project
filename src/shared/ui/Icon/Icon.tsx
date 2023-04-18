@@ -6,8 +6,14 @@ interface IconProps {
     className?: string;
     SVG: React.VFC<React.SVGProps<SVGSVGElement>>;
     isInverted?: boolean;
+    onClick?: () => void;
 }
 
-export const Icon = memo(({ className, SVG, isInverted = false }: IconProps) => (
-    <SVG className={classNames(isInverted ? cls.inverted : cls.Icon, {}, [className])} />
+export const Icon = memo(({
+    className, SVG, isInverted = false, onClick,
+}: IconProps) => (
+    <SVG
+        className={classNames(isInverted ? cls.inverted : cls.Icon, {}, [className])}
+        onClick={onClick}
+    />
 ));
