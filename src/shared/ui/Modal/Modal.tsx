@@ -1,6 +1,4 @@
-import React, {
-    FC, useCallback, useEffect, useState,
-} from 'react';
+import React, { FC } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { useModal } from 'shared/lib/hooks/useModal/useModal';
 import { Overlay } from '../Overlay/Overlay';

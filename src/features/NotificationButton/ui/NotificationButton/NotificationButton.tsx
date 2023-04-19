@@ -7,6 +7,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Drawer } from 'shared/ui/Drawer/Drawer';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { AnimationProvider } from 'shared/lib/components/AnimationProvider';
 import cls from './NotificationButton.module.scss';
 
 interface NotificationButtonProps {
@@ -40,9 +41,11 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
                 <Button onClick={onOpenDrawer} theme={ButtonTheme.CLEAR} className={cls.trigger}>
                     <Icon SVG={NotificationIcon} isInverted />
                 </Button>
-                <Drawer isOpen={isDrawerOpen} onClose={onCloseDrawer}>
-                    <NotificationList />
-                </Drawer>
+                <AnimationProvider>
+                    <Drawer isOpen={isDrawerOpen} onClose={onCloseDrawer}>
+                        <NotificationList />
+                    </Drawer>
+                </AnimationProvider>
             </MobileView>
         </>
     );
