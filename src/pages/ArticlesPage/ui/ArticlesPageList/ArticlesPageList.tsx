@@ -2,7 +2,7 @@ import React, { memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ArticleList, ArticleVirtualizedList } from '@/entities/Article';
+import { ArticleList } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text } from '@/shared/ui/Text/Text';
 import { articlesPageActions, getArticles } from '../../model/slices/ArticlesPageSlice';
@@ -39,19 +39,11 @@ export const ArticlesPageList = memo(({ className }: ArticlesPageListProps) => {
 
     return (
         <div className={classNames('', {}, [className])}>
-            { __PROJECT__ !== 'storybook' ? (
-                <ArticleVirtualizedList
-                    isLoading={isLoading}
-                    articles={articles}
-                    view={view}
-                />
-            ) : (
-                <ArticleList
-                    isLoading={isLoading}
-                    articles={articles}
-                    view={view}
-                />
-            ) }
+            <ArticleList
+                isLoading={isLoading}
+                articles={articles}
+                view={view}
+            />
         </div>
     );
 });
