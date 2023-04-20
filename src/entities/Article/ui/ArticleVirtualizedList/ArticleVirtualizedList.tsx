@@ -1,13 +1,13 @@
 import React, {
     HTMLAttributeAnchorTarget, memo, MutableRefObject, useRef,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Text, TextSize } from 'shared/ui/Text/Text';
 import {
     List, ListRowProps, WindowScroller,
 } from 'react-virtualized';
-import { PAGE_ID } from 'widgets/Page/ui/PageWrapper/PageWrapper';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
+import { PAGE_ID } from '@/widgets/Page/ui/PageWrapper/PageWrapper';
 import { ArticleView } from '../../model/const/consts';
 import { ArticleListItemSkeleton } from '../../ui/ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';

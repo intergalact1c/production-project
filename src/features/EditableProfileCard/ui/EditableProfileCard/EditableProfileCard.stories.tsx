@@ -1,9 +1,9 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-import { avatarUrl as AvatarImg } from 'shared/assets/tests/urls';
-import { Currency } from 'entities/Currency';
-import { Country } from 'entities/Country';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { avatarUrl as AvatarImg } from '@/shared/assets/tests/urls';
+import { Currency } from '@/entities/Currency';
+import { Country } from '@/entities/Country';
 import { EditableProfileCard } from './EditableProfileCard';
 
 export default {

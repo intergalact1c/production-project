@@ -1,10 +1,10 @@
 import React, { memo, useEffect } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleList, ArticleVirtualizedList } from 'entities/Article';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Text } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { ArticleList, ArticleVirtualizedList } from '@/entities/Article';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Text } from '@/shared/ui/Text/Text';
 import { articlesPageActions, getArticles } from '../../model/slices/ArticlesPageSlice';
 import {
     getArticlesPageError,

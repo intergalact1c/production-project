@@ -1,11 +1,11 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import React, {
     memo, ReactNode, useCallback, useEffect,
 } from 'react';
-import { useTheme } from 'app/providers/ThemeProvider';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useTheme } from '@/app/providers/ThemeProvider';
 // import { useDrag } from '@use-gesture/react'; - используем динамическую загрузку библиотеки
 // import { a, useSpring, config } from '@react-spring/web'; - используем динамическую загрузку библиотеки
-import { useAnimationLibs } from 'shared/lib/components/AnimationProvider';
+import { AnimationProvider, useAnimationLibs } from '@/shared/lib/components/AnimationProvider';
 import { Overlay } from '../Overlay/Overlay';
 import cls from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
@@ -105,7 +105,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
 });
 
 // Обертка для ожидания загрузки библиотек
-export const Drawer = memo((props: DrawerProps) => {
+const DrawerAsync = (props: DrawerProps) => {
     const { isLoaded } = useAnimationLibs();
 
     // Можно заменить спинером или скелетоном
@@ -114,4 +114,7 @@ export const Drawer = memo((props: DrawerProps) => {
     }
 
     return <DrawerContent {...props} />;
-});
+};
+
+// Обертка для добавления AnimationProvider
+export const Drawer = (props: DrawerProps) => (<AnimationProvider><DrawerAsync {...props} /></AnimationProvider>);
