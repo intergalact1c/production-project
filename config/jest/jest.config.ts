@@ -61,6 +61,7 @@ export default {
         // '\\.s?css$': 'identity-obj-proxy',
         '\\.(s?css|png)$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+        '^@/(.*)$': '<rootDir>/src/$1',
     },
 
     reporters: [
