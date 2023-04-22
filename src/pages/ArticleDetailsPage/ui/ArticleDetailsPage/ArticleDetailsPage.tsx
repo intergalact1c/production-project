@@ -9,6 +9,7 @@ import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsLis
 import { ArticleDetailsComments } from '../../ui/ArticleDetailsComments/ArticleDetailsComments';
 import { ArticleDetailsHeader } from '../../ui/ArticleDetailsHeader/ArticleDetailsHeader';
 import { articleDetailsPageReducer } from '../../model/slices';
+import { ArticleRating } from '@/features/ArticleRating';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -37,6 +38,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
             <PageWrapper className={classNames('', {}, [className])}>
                 <ArticleDetailsHeader />
                 <ArticleDetails articleId={articleId} />
+                <ArticleRating articleId={articleId} />
                 <ArticleRecommendationsList />
                 <ArticleDetailsComments articleId={articleId} />
             </PageWrapper>

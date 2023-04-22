@@ -36,3 +36,5 @@ jobs:
       - name: screenshot testing
         run: npm run test:ui:ci
         if: always()
+Как вам статья?: Как вам статья?
+Оставьте отзыв о статье: Оставьте отзыв о статье
