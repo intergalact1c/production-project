@@ -84,6 +84,20 @@ Light.parameters = {
                 { ...article, id: '3' },
             ],
         },
+        {
+            url: `${__API__}/article-ratings?userId=1&articleId=1`,
+            method: 'GET',
+            status: 200,
+            response: [
+                {
+                    id: '1',
+                    rate: 4,
+                    feedback: ' Хорошая статья',
+                    userId: '1',
+                    articleId: '1',
+                },
+            ],
+        },
     ],
 };
 
@@ -100,6 +114,20 @@ Dark.parameters = {
                 { ...article, id: '1' },
                 { ...article, id: '2' },
                 { ...article, id: '3' },
+            ],
+        },
+        {
+            url: `${__API__}/article-ratings?userId=1&articleId=1`,
+            method: 'GET',
+            status: 200,
+            response: [
+                {
+                    id: '1',
+                    rate: 4,
+                    feedback: ' Хорошая статья',
+                    userId: '1',
+                    articleId: '1',
+                },
             ],
         },
     ],
