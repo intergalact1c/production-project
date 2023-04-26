@@ -55,7 +55,21 @@ module.exports = {
         'no-param-reassign': 'off', // ESLint: Assignment to property of function parameter 'state'.(no-param-reassign)
         'no-undef': 'off',
         'react/no-array-index-key': 'off', // index as key
-        'isp-web-plugin/path-checker': 'error',
+        'isp-web-plugin/path-checker': ['error', { alias: '@' }],
+        'isp-web-plugin/public-api-imports': [
+            'error',
+            {
+                alias: '@',
+                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
+            },
+        ],
+        'isp-web-plugin/layer-imports': [
+            'error',
+            {
+                alias: '@',
+                ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+            },
+        ],
     },
     globals: {
         __IS_DEV__: true,

@@ -2,7 +2,7 @@ import React, {
     memo, ReactNode, useCallback, useEffect,
 } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { useTheme } from '@/app/providers/ThemeProvider';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 // import { useDrag } from '@use-gesture/react'; - используем динамическую загрузку библиотеки
 // import { a, useSpring, config } from '@react-spring/web'; - используем динамическую загрузку библиотеки
 import { AnimationProvider, useAnimationLibs } from '@/shared/lib/components/AnimationProvider';

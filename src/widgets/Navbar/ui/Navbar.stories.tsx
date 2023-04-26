@@ -2,14 +2,14 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import withMock from 'storybook-addon-mock';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { avatarUrl } from '@/shared/assets/tests/urls';
-import { Notification } from '@/entities/Notification/model/types/notification';
+import { Notification } from '@/entities/Notification';
 import { Navbar } from './Navbar';
+import { Theme } from '@/shared/const/theme';
 
 export default {
-    title: 'widget/Navbar',
+    title: 'widgets/Navbar',
     component: Navbar,
     argTypes: {
         backgroundColor: { control: 'color' },

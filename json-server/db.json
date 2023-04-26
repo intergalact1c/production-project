@@ -721,7 +721,7 @@
       "first": "Илья",
       "lastname": "Пономарев",
       "age": 34,
-      "currency": "RUB",
+      "currency": "EUR",
       "country": "Russia",
       "city": "Нижний Новгород",
       "login": "super_admin",

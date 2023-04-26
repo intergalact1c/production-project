@@ -2,14 +2,10 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import withMock from 'storybook-addon-mock';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { Article, ArticleType } from '@/entities/Article';
-import { ArticleBlockType } from '@/entities/Article/model/const/consts';
-import {
-    Normal,
-} from '@/features/ArticleRecommendationsList/ui/ArticleRecommendationsList/ArticleRecommendationsList.stories';
+import { Article, ArticleType, ArticleBlockType } from '@/entities/Article';
 import ArticleDetailsPage from './ArticleDetailsPage';
+import { Theme } from '@/shared/const/theme';
 
 export default {
     title: 'pages/ArticleDetailsPage/ArticleDetailsPage',

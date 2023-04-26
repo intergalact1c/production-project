@@ -7,7 +7,8 @@ import {
 } from 'react-virtualized';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text, TextSize } from '@/shared/ui/Text/Text';
-import { PAGE_ID } from '@/widgets/Page/ui/PageWrapper/PageWrapper';
+// eslint-disable-next-line isp-web-plugin/layer-imports
+import { PAGE_ID } from '@/widgets/Page';
 import { ArticleView } from '../../model/const/consts';
 import { ArticleListItemSkeleton } from '../../ui/ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';

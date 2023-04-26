@@ -2,18 +2,16 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { avatarUrl } from '@/shared/assets/tests/urls';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider';
 import { AvatarDropDown } from './AvatarDropDown';
 
 export default {
-    title: 'shared/AvatarDropDown',
+    title: 'features/AvatarDropDown',
     component: AvatarDropDown,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
     decorators: [
-        (Story) => <div style={{ width: '150px' }}><Story /></div>,
+        (Story) => <div style={{ display: 'flex', justifyContent: 'center' }}><Story /></div>,
     ],
 } as ComponentMeta<typeof AvatarDropDown>;
 

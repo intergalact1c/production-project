@@ -8,7 +8,6 @@ import { Input } from '@/shared/ui/Input/Input';
 import { Text, TextTheme } from '@/shared/ui/Text/Text';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import { User } from '@/entities/User';
 import { getLoginFormPassword } from '../../model/selectors/getLoginFormPassword/getLoginFormPassword';
 import { getLoginFormLoading } from '../../model/selectors/getLoginFormLoading/getLoginFormLoading';
@@ -18,6 +17,7 @@ import { fetchUserByLogin } from '../../model/services/fetchUserByLogin/fetchUse
 
 import { loginActions, loginReducer } from '../../model/slice/LoginSlice';
 import cls from './LoginForm.module.scss';
+import { RoutePath } from '@/shared/const/router';
 
 export interface LoginFormProps {
     className?: string;
