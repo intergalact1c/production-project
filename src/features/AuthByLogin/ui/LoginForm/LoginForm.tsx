@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Input } from '@/shared/ui/Input/Input';
-import { Text, TextTheme } from '@/shared/ui/Text/Text';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Text, TextTheme } from '@/shared/ui/Text';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { User } from '@/entities/User';
@@ -14,10 +14,9 @@ import { getLoginFormLoading } from '../../model/selectors/getLoginFormLoading/g
 import { getLoginFormError } from '../../model/selectors/getLoginFormError/getLoginFormError';
 import { getLoginFormLogin } from '../../model/selectors/getLoginFormLogin/getLoginFormLogin';
 import { fetchUserByLogin } from '../../model/services/fetchUserByLogin/fetchUserByLogin';
-
 import { loginActions, loginReducer } from '../../model/slice/LoginSlice';
 import cls from './LoginForm.module.scss';
-import { RoutePath } from '@/shared/const/router';
+import { getRouteProfile } from '@/shared/const/router';
 
 export interface LoginFormProps {
     className?: string;
@@ -52,7 +51,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
             const user = result.payload as User;
-            navigate(`${RoutePath.profile}${user.id}`);
+            navigate(getRouteProfile(user.id));
         }
     }, [dispatch, login, password, onSuccess, navigate]);
 

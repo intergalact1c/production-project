@@ -6,7 +6,7 @@ import {
     List, ListRowProps, WindowScroller,
 } from 'react-virtualized';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text, TextSize } from '@/shared/ui/Text/Text';
+import { Text, TextSize } from '@/shared/ui/Text';
 // eslint-disable-next-line isp-web-plugin/layer-imports
 import { PAGE_ID } from '@/widgets/Page';
 import { ArticleView } from '../../model/const/consts';

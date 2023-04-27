@@ -1,5 +1,5 @@
 import React, {
-    InputHTMLAttributes, memo, SyntheticEvent, useCallback, useEffect, useRef, useState,
+    InputHTMLAttributes, memo, SyntheticEvent, useEffect, useRef, useState,
 } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { HStack } from '../Stack/HStack/HStack';

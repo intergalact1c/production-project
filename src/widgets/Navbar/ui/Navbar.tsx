@@ -2,16 +2,16 @@ import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { LoginModal } from '@/features/AuthByLogin';
 import { getUserAuthData } from '@/entities/User';
-import { Text, TextTheme } from '@/shared/ui/Text/Text';
-import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink/AppLink';
+import { Text, TextTheme } from '@/shared/ui/Text';
+import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { HStack } from '@/shared/ui/Stack';
 import { NotificationButton } from '@/features/NotificationButton';
 import { AvatarDropDown } from '@/features/AvatarDropDown';
 import cls from './Navbar.module.scss';
-import { RoutePath } from '@/shared/const/router';
+import { getRouteArticleCreate } from '@/shared/const/router';
 
 interface NavbarProps {
     className?: string;
@@ -38,7 +38,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 <Text theme={TextTheme.INVERTED} title={t('APP')} />
                 <AppLink
                     theme={AppLinkTheme.INVERTED}
-                    to={RoutePath.article_create}
+                    to={getRouteArticleCreate()}
                     className={classNames(cls.link, {}, ['ml-a'])}
                 >
                     {t('Создать статью')}

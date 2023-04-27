@@ -1,5 +1,5 @@
 import React, {
-    memo, Suspense, useCallback, useMemo,
+    memo, Suspense, useCallback,
 } from 'react';
 import { Route } from 'react-router';
 import { Routes } from 'react-router-dom';

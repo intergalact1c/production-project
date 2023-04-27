@@ -22,13 +22,15 @@ module.exports = {
         'i18next',
         'react-hooks',
         'isp-web-plugin',
+        'unused-imports',
     ],
     rules: {
         'react/jsx-indent': [2, 4], // отступы для jsx. 2 - означает, что будет выбрасываться ошибка при не соблюдении правила
         'react/jsx-indent-props': [2, 4], // отступы для пропсов в jsx
         indent: [2, 4], // отступы для остального кода
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }], // разрешаем расширение JSX в файлах '.js', '.jsx', '.tsx'
-        'import/no-unresolved': 'off', // абсолютные пути
+        'import/no-unresolved': 'off', // абсолютные пути or "@typescript-eslint/no-unused-vars": "off",
+        'unused-imports/no-unused-imports': 'error',
         'import/prefer-default-export': 'off', // дефолтный экспорт по умолчанию
         'no-unused-vars': 'off', // неиспользуемые переменные
         'react/require-default-props': 'off', // подсветка дефолтных свойств (?)

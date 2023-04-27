@@ -9,6 +9,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     const svgLoader = {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
+        exclude: /node_modules/,
     };
 
     const fileLoader = {
@@ -18,6 +19,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
                 loader: 'file-loader',
             },
         ],
+        exclude: /node_modules/,
     };
 
     // Если не используем TS, то ставим babel-loader

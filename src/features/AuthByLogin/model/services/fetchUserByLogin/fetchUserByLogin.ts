@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { User, userActions } from '@/entities/User';
 import { USER_LS_KEY } from '@/shared/const/localStorage';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { RoutePath } from '@/shared/const/router';
 
 interface fetchUserByLoginProps {
     login: string;
