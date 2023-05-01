@@ -12,8 +12,9 @@ import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import { getScrollRecoveryPath } from '../ScrollRecovery/model/selectors/scrollRecovery';
 import { scrollRecoveryActions } from '../ScrollRecovery/model/slices/scrollRecoverySlice';
 import cls from './PageWrapper.module.scss';
+import { TestProps } from '@/shared/types/tests';
 
-interface PageWrapperProps {
+interface PageWrapperProps extends TestProps {
     className?: string;
     children: ReactNode;
     onScrollEnd?: () => void;
@@ -22,9 +23,10 @@ interface PageWrapperProps {
 
 export const PAGE_ID = 'PAGE_ID';
 
-export const PageWrapper = memo(({
-    className, children, onScrollEnd, isTriggerVisible = true,
-}: PageWrapperProps) => {
+export const PageWrapper = memo((props: PageWrapperProps) => {
+    const {
+        className, children, onScrollEnd, isTriggerVisible = true,
+    } = props;
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const dispatch = useAppDispatch();
@@ -56,6 +58,7 @@ export const PageWrapper = memo(({
     return (
         <main
             id={PAGE_ID}
+            data-testid={props['data-testid' ?? 'Page']}
             ref={wrapperRef}
             className={classNames(cls.PageWrapper, {}, [className])}
             onScroll={onScroll}

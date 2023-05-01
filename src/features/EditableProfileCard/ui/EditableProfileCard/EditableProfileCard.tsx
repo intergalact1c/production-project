@@ -58,11 +58,12 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
     };
 
-    const profileId = __PROJECT__ !== 'storybook' ? id : '1';
+    // const profileId = __PROJECT__ !== 'storybook' ? id : '1';
 
     useInitialEffect(() => {
-        if (profileId) {
-            dispatch(fetchProfileData(profileId));
+        // if (profileId) {
+        if (id) {
+            dispatch(fetchProfileData(id));
         }
     });
 

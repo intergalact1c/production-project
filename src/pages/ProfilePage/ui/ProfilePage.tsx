@@ -10,21 +10,20 @@ interface ProfilePageProps {
     classname?: string;
 }
 
-function ProfilePage({ classname }: ProfilePageProps) {
+const ProfilePage = ({ classname }: ProfilePageProps) => {
     const { id } = useParams<{id: string}>();
     const { t } = useTranslation('profile');
 
     const profileId = __PROJECT__ !== 'storybook' ? id : '1';
 
-    if (!profileId) {
-        return <Text text={t('Профиль не найден')} />;
-    }
-
     return (
-        <PageWrapper className={classNames('', {}, [classname])}>
-            <EditableProfileCard id={profileId} />
+        <PageWrapper
+            data-testid="ProfilePage"
+            className={classNames('', {}, [classname])}
+        >
+            {!profileId ? <Text text={t('Профиль не найден')} /> : <EditableProfileCard id={profileId} />}
         </PageWrapper>
     );
-}
+};
 
 export default memo(ProfilePage);

@@ -13,6 +13,8 @@ import { Article, ArticleTextBlock } from '../../model/types/article';
 import cls from './ArticleListItem.module.scss';
 import ViewsIcon from '../../../../shared/assets/icons/views.svg';
 import { getRouteArticleDetails } from '@/shared/const/router';
+import { AppImage } from '@/shared/ui/AppImage';
+import { Skeleton } from '@/shared/ui/Skeleton';
 
 interface ArticleListItemProps {
     className?: string;
@@ -92,7 +94,11 @@ export const ArticleListItem = memo(({
                 <div className={cls.header}>
                     <div className={cls.image}>
                         <div className={cls.inner}>
-                            <img src={article.img} alt={article.title} />
+                            <AppImage
+                                fallback={<Skeleton width={268} height={268} />}
+                                src={article.img}
+                                alt={article.title}
+                            />
                             <span className={cls.date}>{article.createdAt}</span>
                         </div>
                     </div>

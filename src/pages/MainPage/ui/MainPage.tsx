@@ -8,7 +8,7 @@ const MainPage = () => {
     const { t } = useTranslation('main');
 
     return (
-        <PageWrapper>
+        <PageWrapper data-testid="MainPage">
             {t('Главная')}
             {/* <BugButton/> */}
             {/* <Counter /> */}
