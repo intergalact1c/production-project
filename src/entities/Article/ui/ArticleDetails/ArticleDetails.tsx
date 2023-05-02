@@ -14,7 +14,6 @@ import { ArticleBlockType } from '../../model/const/consts';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
-import { ArticleBlock } from '../../model/types/article';
 import {
     getArticleDetailsData,
     getArticleDetailsError,
@@ -25,6 +24,7 @@ import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import cls from './ArticleDetails.module.scss';
 import ViewsIcon from '../../../../shared/assets/icons/views.svg';
 import CreatedAtIcon from '../../../../shared/assets/icons/created-at.svg';
+import { ArticleBlock } from '../../model/types/article';
 
 interface ArticleDetailsProps {
     className?: string;
