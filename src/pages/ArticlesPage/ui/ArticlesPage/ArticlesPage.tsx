@@ -40,6 +40,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
                 className={classNames('', {}, [className])}
                 onScrollEnd={onLoadNextPart}
                 isTriggerVisible={isTriggerVisible}
+                data-testid="ArticlesPage"
             >
                 <ArticlesPageFilters />
                 <ArticlesPageList />

@@ -91,6 +91,7 @@ export const ArticleVirtualizedList = memo(({
                         // @ts-ignore
                         ref={registerChild}
                         className={classNames(cls.ArticleList, {}, [className, cls[view]])}
+                        data-testid="ArticleList"
                     >
                         {/* @ts-ignore */}
                         <List

@@ -96,13 +96,15 @@ export const ArticleDetails = memo(({ className, articleId }: ArticleDetailsProp
                     text={data?.subtitle}
                     size={TextSize.L}
                 />
-                <div className={cls.info}>
-                    <Icon SVG={ViewsIcon} />
-                    <Text text={String(data?.views)} />
-                </div>
-                <div className={cls.info}>
-                    <Icon SVG={CreatedAtIcon} />
-                    <Text text={String(data?.createdAt)} />
+                <div data-testid="ArticleDetails.Info">
+                    <div className={cls.info}>
+                        <Icon SVG={ViewsIcon} />
+                        <Text text={String(data?.views)} />
+                    </div>
+                    <div className={cls.info}>
+                        <Icon SVG={CreatedAtIcon} />
+                        <Text text={String(data?.createdAt)} />
+                    </div>
                 </div>
                 {data?.blocks.map(renderBlock)}
             </>

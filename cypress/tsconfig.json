@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node"],
+    // Поддержка JS
+    "allowJs": true,
+    "isolatedModules": false,
+  },
+  // Расширяем конфиг cypress настройками самого проекта
+  "extends": "../tsconfig.json",
+  "include": ["**/*.ts", "**/*.tsx"]
+}

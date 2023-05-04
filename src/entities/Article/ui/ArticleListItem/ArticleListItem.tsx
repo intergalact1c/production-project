@@ -39,7 +39,10 @@ export const ArticleListItem = memo(({
         ) as ArticleTextBlock;
 
         return (
-            <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
+            <div
+                className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+                data-testid="ArticleListItem"
+            >
                 <Card>
                     <div className={cls.header}>
                         <div className={cls.info}>
