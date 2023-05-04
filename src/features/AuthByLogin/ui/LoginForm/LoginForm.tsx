@@ -6,7 +6,10 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Text, TextTheme } from '@/shared/ui/Text';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { User } from '@/entities/User';
 import { getLoginFormPassword } from '../../model/selectors/getLoginFormPassword/getLoginFormPassword';
@@ -38,13 +41,19 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
     const navigate = useNavigate();
 
-    const onChangeLogin = useCallback((value: string) => {
-        dispatch(loginActions.setLogin(value));
-    }, [dispatch]);
+    const onChangeLogin = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setLogin(value));
+        },
+        [dispatch],
+    );
 
-    const onChangePassword = useCallback((value: string) => {
-        dispatch(loginActions.setPassword(value));
-    }, [dispatch]);
+    const onChangePassword = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setPassword(value));
+        },
+        [dispatch],
+    );
 
     const onLoginClick = useCallback(async () => {
         const result = await dispatch(fetchUserByLogin({ login, password }));

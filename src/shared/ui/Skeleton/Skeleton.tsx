@@ -10,7 +10,10 @@ interface SkeletonProps {
 }
 
 export const Skeleton = ({
-    className, width, height, borderRadius,
+    className,
+    width,
+    height,
+    borderRadius,
 }: SkeletonProps) => {
     const styles: CSSProperties = {
         width,

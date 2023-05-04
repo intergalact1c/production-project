@@ -7,7 +7,9 @@ module.exports = {
     extends: [
         'plugin:react/recommended',
         'airbnb',
-        'plugin:i18next/recommended'],
+        'plugin:i18next/recommended',
+        'prettier',
+    ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
@@ -25,10 +27,13 @@ module.exports = {
         'unused-imports',
     ],
     rules: {
-        'react/jsx-indent': [2, 4], // отступы для jsx. 2 - означает, что будет выбрасываться ошибка при не соблюдении правила
-        'react/jsx-indent-props': [2, 4], // отступы для пропсов в jsx
-        indent: [2, 4], // отступы для остального кода
-        'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }], // разрешаем расширение JSX в файлах '.js', '.jsx', '.tsx'
+        // prettier 'react/jsx-indent': [2, 4], // отступы для jsx. 2 - означает, что будет выбрасываться ошибка при не соблюдении правила
+        // prettier 'react/jsx-indent-props': [2, 4], // отступы для пропсов в jsx
+        // prettier indent: [2, 4], // отступы для остального кода
+        'react/jsx-filename-extension': [
+            2,
+            { extensions: ['.js', '.jsx', '.tsx'] },
+        ], // разрешаем расширение JSX в файлах '.js', '.jsx', '.tsx'
         'import/no-unresolved': 'off', // абсолютные пути or "@typescript-eslint/no-unused-vars": "off",
         'unused-imports/no-unused-imports': 'error',
         'import/prefer-default-export': 'off', // дефолтный экспорт по умолчанию
@@ -41,13 +46,27 @@ module.exports = {
         'import/extensions': 'off', // импорты
         'import/no-extraneous-dependencies': 'warn', // ESLint: 'webpack' should be listed in the project's dependencies, not devDependencies.(import/no-extraneous-dependencies)
         'no-underscore-dangle': 'off', // двойное подчеркивание
-        'i18next/no-literal-string': [2, {
-            markupOnly: true,
-            ignoreAttribute: [
-                'data-testid', 'to', 'selectId', 'target', 'direction', 'align', 'justify', 'role', 'as', 'defaultValue',
-                'direction', 'label', 'refName', 'borderRadius',
-            ],
-        },
+        'i18next/no-literal-string': [
+            2,
+            {
+                markupOnly: true,
+                ignoreAttribute: [
+                    'data-testid',
+                    'to',
+                    'selectId',
+                    'target',
+                    'direction',
+                    'align',
+                    'justify',
+                    'role',
+                    'as',
+                    'defaultValue',
+                    'direction',
+                    'label',
+                    'refName',
+                    'borderRadius',
+                ],
+            },
         ],
         'max-len': [2, { code: 130, ignoreComments: true }], // длина строки
         'jsx-a11y/no-static-element-interactions': 'off',
@@ -62,7 +81,11 @@ module.exports = {
             'error',
             {
                 alias: '@',
-                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
+                testFilesPatterns: [
+                    '**/*.test.*',
+                    '**/*.story.*',
+                    '**/StoreDecorator.tsx',
+                ],
             },
         ],
         'isp-web-plugin/layer-imports': [
@@ -72,6 +95,7 @@ module.exports = {
                 ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
             },
         ],
+        'react/jsx-max-props-per-line': ['error', { maximum: 4 }], // допустимое количество атрибутов в одной линии
     },
     globals: {
         __IS_DEV__: true,

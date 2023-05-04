@@ -1,5 +1,9 @@
 import React, {
-    memo, MutableRefObject, ReactNode, UIEvent, useRef,
+    memo,
+    MutableRefObject,
+    ReactNode,
+    UIEvent,
+    useRef,
 } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -24,14 +28,14 @@ interface PageWrapperProps extends TestProps {
 export const PAGE_ID = 'PAGE_ID';
 
 export const PageWrapper = memo((props: PageWrapperProps) => {
-    const {
-        className, children, onScrollEnd, isTriggerVisible = true,
-    } = props;
+    const { className, children, onScrollEnd, isTriggerVisible = true } = props;
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
-    const scrollPosition = useSelector((state: StateSchema) => getScrollRecoveryPath(state, pathname));
+    const scrollPosition = useSelector((state: StateSchema) =>
+        getScrollRecoveryPath(state, pathname),
+    );
 
     useInfiniteScroll({
         callback: onScrollEnd,
@@ -41,10 +45,12 @@ export const PageWrapper = memo((props: PageWrapperProps) => {
 
     const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
         // console.log('onScroll');
-        dispatch(scrollRecoveryActions.setScrollPosition({
-            position: e.currentTarget.scrollTop,
-            path: pathname,
-        }));
+        dispatch(
+            scrollRecoveryActions.setScrollPosition({
+                position: e.currentTarget.scrollTop,
+                path: pathname,
+            }),
+        );
     }, 500);
 
     useInitialEffect(() => {
@@ -65,7 +71,12 @@ export const PageWrapper = memo((props: PageWrapperProps) => {
         >
             <div className={cls.inner}>
                 {children}
-                {onScrollEnd ? <div className={classNames(cls.trigger, mods, [])} ref={triggerRef} /> : null}
+                {onScrollEnd ? (
+                    <div
+                        className={classNames(cls.trigger, mods, [])}
+                        ref={triggerRef}
+                    />
+                ) : null}
             </div>
         </main>
     );

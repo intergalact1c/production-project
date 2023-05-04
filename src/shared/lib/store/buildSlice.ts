@@ -8,8 +8,8 @@ import { useMemo } from 'react';
 export function buildSlice<
     State,
     CaseReducers extends SliceCaseReducers<State>,
-    Name extends string = string
-    >(options: CreateSliceOptions<State, CaseReducers, Name>) {
+    Name extends string = string,
+>(options: CreateSliceOptions<State, CaseReducers, Name>) {
     // Проксируем options из buildSlice в функцию createSlice (для того, чтобы правильно подхватились типы)
     const slice = createSlice(options);
 
@@ -17,7 +17,11 @@ export function buildSlice<
         const dispatch = useDispatch();
 
         // @ts-ignore
-        return useMemo(() => bindActionCreators(slice.actions, dispatch), [dispatch]);
+        return useMemo(
+            // @ts-ignore
+            () => bindActionCreators(slice.actions, dispatch),
+            [dispatch],
+        );
     };
 
     return {

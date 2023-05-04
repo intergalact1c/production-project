@@ -13,10 +13,13 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
     theme?: CardTheme;
 }
 
-export const Card = memo(({
-    className, children, theme = CardTheme.NORMAL, ...rest
-}: CardProps) => (
-    <div className={classNames(cls.Card, {}, [className, cls[theme]])} {...rest}>
-        {children}
-    </div>
-));
+export const Card = memo(
+    ({ className, children, theme = CardTheme.NORMAL, ...rest }: CardProps) => (
+        <div
+            className={classNames(cls.Card, {}, [className, cls[theme]])}
+            {...rest}
+        >
+            {children}
+        </div>
+    ),
+);

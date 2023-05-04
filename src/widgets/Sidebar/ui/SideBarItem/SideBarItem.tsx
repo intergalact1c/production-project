@@ -17,9 +17,7 @@ export const SideBarItem = memo(({ item, collapsed }: SideBarItemProps) => {
 
     const isAuth = useSelector(getUserAuthData);
 
-    const {
-        path, Icon, text, authOnly,
-    } = item;
+    const { path, Icon, text, authOnly } = item;
 
     // i18next-extract-disable-next-line
     const i18nText = t(text);

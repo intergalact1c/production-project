@@ -16,13 +16,16 @@ export const Primary = Template.bind({});
 Primary.args = {
     options: [
         {
-            value: '1', content: 'Опция 1',
+            value: '1',
+            content: 'Опция 1',
         },
         {
-            value: '2', content: 'Опция 2',
+            value: '2',
+            content: 'Опция 2',
         },
         {
-            value: '3', content: 'Опция 3',
+            value: '3',
+            content: 'Опция 3',
         },
     ],
 };

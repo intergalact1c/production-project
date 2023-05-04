@@ -14,25 +14,43 @@ interface AvatarProps {
     fallbackInverted?: boolean;
 }
 
-export const Avatar = memo(({
-    className, src, alt = '', size = 70, fallbackInverted = false,
-}: AvatarProps) => {
-    const styles = useMemo<CSSProperties>(() => ({
-        width: size,
-        height: size,
-    }), [size]);
+export const Avatar = memo(
+    ({
+        className,
+        src,
+        alt = '',
+        size = 70,
+        fallbackInverted = false,
+    }: AvatarProps) => {
+        const styles = useMemo<CSSProperties>(
+            () => ({
+                width: size,
+                height: size,
+            }),
+            [size],
+        );
 
-    const fallback = <Skeleton width={size} height={size} borderRadius="50%" />;
-    const errorFallback = <Icon SVG={AvatarIcon} width={size} height={size} isInverted={fallbackInverted} />;
+        const fallback = (
+            <Skeleton width={size} height={size} borderRadius="50%" />
+        );
+        const errorFallback = (
+            <Icon
+                SVG={AvatarIcon}
+                width={size}
+                height={size}
+                isInverted={fallbackInverted}
+            />
+        );
 
-    return (
-        <AppImage
-            fallback={fallback}
-            errorFallback={errorFallback}
-            src={src}
-            alt={alt}
-            style={styles}
-            className={classNames(cls.Avatar, {}, [className])}
-        />
-    );
-});
+        return (
+            <AppImage
+                fallback={fallback}
+                errorFallback={errorFallback}
+                src={src}
+                alt={alt}
+                style={styles}
+                className={classNames(cls.Avatar, {}, [className])}
+            />
+        );
+    },
+);

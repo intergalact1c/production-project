@@ -23,43 +23,57 @@ interface SelectProps<T extends string> {
 const typedMemo: <T>(c: T) => T = memo;
 
 // Дженерик пропсы плохо работают с memo. Для мемоизации нужно добавить специальную обертку
-export const Select = typedMemo(<T extends string>({
-    className,
-    label = 'Выберите из списка:',
-    selectId = 'some-select',
-    options,
-    value,
-    onChange,
-    readonly,
-    mwa = false,
-}: SelectProps<T>) => {
-    const optionsList = useMemo(
-        () => (options?.map((opt) => (<option key={opt.value} value={opt.value}>{opt.content}</option>))),
-        [options],
-    );
+export const Select = typedMemo(
+    <T extends string>({
+        className,
+        label = 'Выберите из списка:',
+        selectId = 'some-select',
+        options,
+        value,
+        onChange,
+        readonly,
+        mwa = false,
+    }: SelectProps<T>) => {
+        const optionsList = useMemo(
+            () =>
+                options?.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                        {opt.content}
+                    </option>
+                )),
+            [options],
+        );
 
-    const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(e.target.value as T);
-    };
+        const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+            onChange?.(e.target.value as T);
+        };
 
-    const mods: Mods = {
-        mw_a: mwa,
-    };
+        const mods: Mods = {
+            mw_a: mwa,
+        };
 
-    return (
-        <HStack
-            justify="between"
-            className={classNames(cls.SelectWrapper, {}, [className])}
-        >
-            {label && <label htmlFor={selectId} className={classNames('', mods, [])}><span>{label}</span></label>}
-            <select
-                id={selectId}
-                value={value}
-                onChange={onChangeHandler}
-                disabled={readonly}
+        return (
+            <HStack
+                justify="between"
+                className={classNames(cls.SelectWrapper, {}, [className])}
             >
-                {optionsList}
-            </select>
-        </HStack>
-    );
-});
+                {label && (
+                    <label
+                        htmlFor={selectId}
+                        className={classNames('', mods, [])}
+                    >
+                        <span>{label}</span>
+                    </label>
+                )}
+                <select
+                    id={selectId}
+                    value={value}
+                    onChange={onChangeHandler}
+                    disabled={readonly}
+                >
+                    {optionsList}
+                </select>
+            </HStack>
+        );
+    },
+);

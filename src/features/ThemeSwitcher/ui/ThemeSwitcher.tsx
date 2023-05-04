@@ -11,19 +11,21 @@ interface ThemeSwitcherProps {
     isInverted?: boolean;
 }
 
-export const ThemeSwitcher = memo(({ className, isInverted = true }: ThemeSwitcherProps) => {
-    const { theme, toggleTheme } = useTheme();
+export const ThemeSwitcher = memo(
+    ({ className, isInverted = true }: ThemeSwitcherProps) => {
+        const { theme, toggleTheme } = useTheme();
 
-    const normal = theme === Theme.DARK ? <DarkIcon /> : <LightIcon />;
-    const storybook = theme === Theme.DARK ? <LightIcon /> : <DarkIcon />;
+        const normal = theme === Theme.DARK ? <DarkIcon /> : <LightIcon />;
+        const storybook = theme === Theme.DARK ? <LightIcon /> : <DarkIcon />;
 
-    return (
-        <Button
-            theme={ButtonTheme.CLEAR}
-            className={classNames('', {}, [className])}
-            onClick={toggleTheme}
-        >
-            {isInverted ? normal : storybook}
-        </Button>
-    );
-});
+        return (
+            <Button
+                theme={ButtonTheme.CLEAR}
+                className={classNames('', {}, [className])}
+                onClick={toggleTheme}
+            >
+                {isInverted ? normal : storybook}
+            </Button>
+        );
+    },
+);

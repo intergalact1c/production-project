@@ -11,11 +11,17 @@ export default {
         backgroundColor: { control: 'color' },
     },
     decorators: [
-        (Story) => <div style={{ display: 'flex', justifyContent: 'center' }}><Story /></div>,
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Story />
+            </div>
+        ),
     ],
 } as ComponentMeta<typeof AvatarDropDown>;
 
-const Template: ComponentStory<typeof AvatarDropDown> = (args) => <AvatarDropDown {...args} />;
+const Template: ComponentStory<typeof AvatarDropDown> = (args) => (
+    <AvatarDropDown {...args} />
+);
 
 const initialState = {
     user: {

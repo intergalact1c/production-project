@@ -11,7 +11,7 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = ({ classname }: ProfilePageProps) => {
-    const { id } = useParams<{id: string}>();
+    const { id } = useParams<{ id: string }>();
     const { t } = useTranslation('profile');
 
     const profileId = __PROJECT__ !== 'storybook' ? id : '1';
@@ -21,7 +21,11 @@ const ProfilePage = ({ classname }: ProfilePageProps) => {
             data-testid="ProfilePage"
             className={classNames('', {}, [classname])}
         >
-            {!profileId ? <Text text={t('Профиль не найден')} /> : <EditableProfileCard id={profileId} />}
+            {!profileId ? (
+                <Text text={t('Профиль не найден')} />
+            ) : (
+                <EditableProfileCard id={profileId} />
+            )}
         </PageWrapper>
     );
 };

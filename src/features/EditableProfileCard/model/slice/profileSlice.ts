@@ -36,11 +36,14 @@ export const profileSlice = createSlice({
                 state.error = undefined; // ошибка с сервера
                 state.isLoading = true;
             })
-            .addCase(fetchProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
-                state.isLoading = false;
-                state.data = action.payload;
-                state.form = action.payload;
-            })
+            .addCase(
+                fetchProfileData.fulfilled,
+                (state, action: PayloadAction<Profile>) => {
+                    state.isLoading = false;
+                    state.data = action.payload;
+                    state.form = action.payload;
+                },
+            )
             .addCase(fetchProfileData.rejected, (state, action) => {
                 state.error = action.payload; // ошибка с сервера
                 state.isLoading = false;
@@ -49,13 +52,16 @@ export const profileSlice = createSlice({
                 state.validateErrors = undefined; // ошибки валидации
                 state.isLoading = true;
             })
-            .addCase(updateProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
-                state.readonly = true;
-                state.isLoading = false;
-                state.data = action.payload;
-                state.form = action.payload;
-                state.validateErrors = undefined; // ошибки валидации
-            })
+            .addCase(
+                updateProfileData.fulfilled,
+                (state, action: PayloadAction<Profile>) => {
+                    state.readonly = true;
+                    state.isLoading = false;
+                    state.data = action.payload;
+                    state.form = action.payload;
+                    state.validateErrors = undefined; // ошибки валидации
+                },
+            )
             .addCase(updateProfileData.rejected, (state, action) => {
                 state.validateErrors = action.payload; // ошибки валидации
                 state.isLoading = false;

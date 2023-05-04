@@ -8,9 +8,14 @@ describe('fetchUserByLogin', () => {
 
         const thunk = new TestAsyncThunk(fetchUserByLogin);
         thunk.api.post.mockReturnValue(Promise.resolve({ data: userValue }));
-        const result = await thunk.CallThunk({ login: 'login', password: 'password' });
+        const result = await thunk.CallThunk({
+            login: 'login',
+            password: 'password',
+        });
 
-        expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue)); // проверка на то, что dispatch был вызван с аргументом userValue
+        expect(thunk.dispatch).toHaveBeenCalledWith(
+            userActions.setAuthData(userValue),
+        ); // проверка на то, что dispatch был вызван с аргументом userValue
         expect(thunk.dispatch).toHaveBeenCalledTimes(3); // проверка на то, что dispatch был вызван 3 раза:
         // 1 раз - когда вызвали сам action fetchUserByLogin (pending)
         // 2 раз - когда вызвали dispatch с action setAuthData (24 строка fetchUserByLogin.ts)
@@ -23,7 +28,10 @@ describe('fetchUserByLogin', () => {
     test('error login', async () => {
         const thunk = new TestAsyncThunk(fetchUserByLogin);
         thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
-        const result = await thunk.CallThunk({ login: 'login', password: 'password' });
+        const result = await thunk.CallThunk({
+            login: 'login',
+            password: 'password',
+        });
 
         expect(thunk.dispatch).toHaveBeenCalledTimes(2); // т.к. не вызывается промежуточный dispatch в 24 строке fetchUserByLogin.ts
         expect(thunk.api.post).toHaveBeenCalled();

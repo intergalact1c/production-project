@@ -13,7 +13,9 @@ export default {
     },
 } as ComponentMeta<typeof Sidebar>;
 
-const Template: ComponentStory<typeof Sidebar> = (args) => <Sidebar {...args} />;
+const Template: ComponentStory<typeof Sidebar> = (args) => (
+    <Sidebar {...args} />
+);
 
 const initialState = {
     user: {
@@ -31,6 +33,8 @@ Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator(initialState)];
 
 export const NoAuth = Template.bind({});
 NoAuth.args = {};
-NoAuth.decorators = [StoreDecorator({
-    user: {},
-})];
+NoAuth.decorators = [
+    StoreDecorator({
+        user: {},
+    }),
+];

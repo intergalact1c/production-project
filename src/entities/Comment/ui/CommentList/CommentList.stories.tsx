@@ -17,21 +17,27 @@ const args = {
         {
             id: '1',
             user: {
-                id: '1', login: 'login', avatar: 'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
+                id: '1',
+                login: 'login',
+                avatar: 'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
             },
             text: 'Текст комментария',
         },
         {
             id: '2',
             user: {
-                id: '1', login: 'login', avatar: 'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
+                id: '1',
+                login: 'login',
+                avatar: 'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
             },
             text: 'Текст комментария 2',
         },
     ],
 };
 
-const Template: ComponentStory<typeof CommentList> = (args) => <CommentList {...args} />;
+const Template: ComponentStory<typeof CommentList> = (args) => (
+    <CommentList {...args} />
+);
 
 export const Light = Template.bind({});
 Light.args = args;

@@ -3,7 +3,9 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import {
-    Article, ArticleType, ArticleView,
+    Article,
+    ArticleType,
+    ArticleView,
     ArticleBlockType,
 } from '@/entities/Article';
 import ArticlesPage from './ArticlesPage';
@@ -17,7 +19,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticlesPage>;
 
-const Template: ComponentStory<typeof ArticlesPage> = (args) => <ArticlesPage {...args} />;
+const Template: ComponentStory<typeof ArticlesPage> = (args) => (
+    <ArticlesPage {...args} />
+);
 
 /* eslint-disable max-len */
 const article: Article = {
@@ -62,7 +66,7 @@ const article: Article = {
 };
 const arr = new Array(10).fill(0);
 const ids: string[] = [];
-const entities: {[index: string]: Article} = {};
+const entities: { [index: string]: Article } = {};
 
 arr.forEach((item, index) => {
     const id = String(index + 1);
