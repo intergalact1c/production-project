@@ -23,130 +23,88 @@ interface ArticleListItemProps {
     target?: HTMLAttributeAnchorTarget;
 }
 
-export const ArticleListItem = memo(
-    ({ className, article, view, target }: ArticleListItemProps) => {
-        const { t } = useTranslation('articles');
-        // const navigate = useNavigate();
+export const ArticleListItem = memo(({ className, article, view, target }: ArticleListItemProps) => {
+    const { t } = useTranslation('articles');
+    // const navigate = useNavigate();
 
-        /* const onOpenArticle = useCallback(() => {
+    /* const onOpenArticle = useCallback(() => {
         navigate(RoutePath.article_details + article.id);
     }, [article.id, navigate]); */
 
-        if (view === ArticleView.LIST) {
-            const textBlock = article.blocks.find(
-                (block) => block.type === ArticleBlockType.TEXT,
-            ) as ArticleTextBlock;
-
-            return (
-                <div
-                    className={classNames(cls.ArticleListItem, {}, [
-                        className,
-                        cls[view],
-                    ])}
-                    data-testid="ArticleListItem"
-                >
-                    <Card>
-                        <div className={cls.header}>
-                            <div className={cls.info}>
-                                <div className={cls.user}>
-                                    <Avatar
-                                        size={50}
-                                        src={article.user.avatar}
-                                    />
-                                    <Text
-                                        title={article.user.login}
-                                        className={cls.login}
-                                    />
-                                </div>
-                                <span className={cls.date}>
-                                    {article.createdAt}
-                                </span>
-                            </div>
-                            <Text title={article.title} className={cls.title} />
-                            <div className={cls.type}>
-                                {article.type.map((item) => (
-                                    <span key={item}>{item}</span>
-                                ))}
-                            </div>
-                        </div>
-                        <div className={cls.body}>
-                            <div
-                                className={cls.image}
-                                style={{
-                                    backgroundImage: `url(${article.img})`,
-                                    backgroundPosition: 'center',
-                                    backgroundSize: '160px',
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundColor: '#d4b830',
-                                }}
-                            />
-                            {textBlock && (
-                                <Text
-                                    text={textBlock.paragraphs[0]}
-                                    className={cls.preview}
-                                />
-                            )}
-                        </div>
-                        <div className={cls.footer}>
-                            <AppLink
-                                target={target}
-                                to={getRouteArticleDetails(article.id)}
-                            >
-                                <Button theme={ButtonTheme.OUTLINE}>
-                                    {t('Подробнее')}
-                                </Button>
-                            </AppLink>
-                            <div className={cls.views}>
-                                <Icon SVG={ViewsIcon} />
-                                <Text text={String(article.views)} />
-                            </div>
-                        </div>
-                    </Card>
-                </div>
-            );
-        }
+    if (view === ArticleView.LIST) {
+        const textBlock = article.blocks.find((block) => block.type === ArticleBlockType.TEXT) as ArticleTextBlock;
 
         return (
-            <AppLink
-                target={target}
-                to={getRouteArticleDetails(article.id)}
-                className={classNames(cls.ArticleListItem, {}, [
-                    className,
-                    cls[view],
-                ])}
-            >
+            <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])} data-testid="ArticleListItem">
                 <Card>
                     <div className={cls.header}>
-                        <div className={cls.image}>
-                            <div className={cls.inner}>
-                                <AppImage
-                                    fallback={
-                                        <Skeleton width={268} height={268} />
-                                    }
-                                    src={article.img}
-                                    alt={article.title}
-                                />
-                                <span className={cls.date}>
-                                    {article.createdAt}
-                                </span>
+                        <div className={cls.info}>
+                            <div className={cls.user}>
+                                <Avatar size={50} src={article.user.avatar} />
+                                <Text title={article.user.login} className={cls.login} />
                             </div>
+                            <span className={cls.date}>{article.createdAt}</span>
+                        </div>
+                        <Text title={article.title} className={cls.title} />
+                        <div className={cls.type}>
+                            {article.type.map((item) => (
+                                <span key={item}>{item}</span>
+                            ))}
                         </div>
                     </div>
                     <div className={cls.body}>
-                        <div className={cls.info}>
-                            <Text
-                                className={cls.type}
-                                text={article.type.join(', ')}
-                            />
-                            <div className={cls.views}>
-                                <Icon SVG={ViewsIcon} />
-                                <Text text={String(article.views)} />
-                            </div>
+                        <div
+                            className={cls.image}
+                            style={{
+                                backgroundImage: `url(${article.img})`,
+                                backgroundPosition: 'center',
+                                backgroundSize: '160px',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundColor: '#d4b830',
+                            }}
+                        />
+                        {textBlock && <Text text={textBlock.paragraphs[0]} className={cls.preview} />}
+                    </div>
+                    <div className={cls.footer}>
+                        <AppLink target={target} to={getRouteArticleDetails(article.id)}>
+                            <Button theme={ButtonTheme.OUTLINE}>{t('Подробнее')}</Button>
+                        </AppLink>
+                        <div className={cls.views}>
+                            <Icon SVG={ViewsIcon} />
+                            <Text text={String(article.views)} />
                         </div>
-                        <Text title={article.title} className={cls.title} />
                     </div>
                 </Card>
-            </AppLink>
+            </div>
         );
-    },
-);
+    }
+
+    return (
+        <AppLink
+            target={target}
+            to={getRouteArticleDetails(article.id)}
+            className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+        >
+            <Card>
+                <div className={cls.header}>
+                    <div className={cls.image}>
+                        <div className={cls.inner}>
+                            <AppImage fallback={<Skeleton width={268} height={268} />} src={article.img} alt={article.title} />
+                            <span className={cls.date}>{article.createdAt}</span>
+                        </div>
+                    </div>
+                </div>
+                <div className={cls.body}>
+                    <div className={cls.info}>
+                        <Text className={cls.type} text={article.type.join(', ')} />
+                        <div className={cls.views}>
+                            <Icon SVG={ViewsIcon} />
+                            <Text text={String(article.views)} />
+                        </div>
+                    </div>
+                    <Text title={article.title} className={cls.title} />
+                </div>
+            </Card>
+        </AppLink>
+    );
+});

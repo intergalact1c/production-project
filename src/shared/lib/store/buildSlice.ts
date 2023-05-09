@@ -5,11 +5,9 @@ import { SliceCaseReducers, CreateSliceOptions } from '@reduxjs/toolkit/dist';
 import { useDispatch } from 'react-redux';
 import { useMemo } from 'react';
 
-export function buildSlice<
-    State,
-    CaseReducers extends SliceCaseReducers<State>,
-    Name extends string = string,
->(options: CreateSliceOptions<State, CaseReducers, Name>) {
+export function buildSlice<State, CaseReducers extends SliceCaseReducers<State>, Name extends string = string>(
+    options: CreateSliceOptions<State, CaseReducers, Name>,
+) {
     // Проксируем options из buildSlice в функцию createSlice (для того, чтобы правильно подхватились типы)
     const slice = createSlice(options);
 

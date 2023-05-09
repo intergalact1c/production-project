@@ -4,9 +4,7 @@ import { Button, ButtonTheme } from './Button';
 
 describe('button', () => {
     test('default', () => {
-        const container = document.body.appendChild(
-            document.createElement('div'),
-        );
+        const container = document.body.appendChild(document.createElement('div'));
         createRoot(container).render(<Button>Test</Button>);
         setTimeout(() => {
             expect(screen.getByText('Test')).toBeInTheDocument();
@@ -15,12 +13,8 @@ describe('button', () => {
     });
 
     test('clear', () => {
-        const container = document.body.appendChild(
-            document.createElement('div'),
-        );
-        createRoot(container).render(
-            <Button theme={ButtonTheme.CLEAR}>Test</Button>,
-        );
+        const container = document.body.appendChild(document.createElement('div'));
+        createRoot(container).render(<Button theme={ButtonTheme.CLEAR}>Test</Button>);
         setTimeout(() => {
             expect(screen.getByText('Test')).toBeInTheDocument();
             screen.debug();

@@ -5,11 +5,7 @@ import { PageWrapper } from '@/widgets/Page';
 const AdminPanelPage = () => {
     const { t } = useTranslation('admin');
 
-    return (
-        <PageWrapper data-testid="AdminPanelPage">
-            {t('Админ панель')}
-        </PageWrapper>
-    );
+    return <PageWrapper data-testid="AdminPanelPage">{t('Админ панель')}</PageWrapper>;
 };
 
 export default memo(AdminPanelPage);

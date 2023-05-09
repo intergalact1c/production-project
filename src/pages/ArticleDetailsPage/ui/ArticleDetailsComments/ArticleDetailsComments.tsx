@@ -17,37 +17,32 @@ interface ArticleDetailsCommentsProps {
     articleId: string;
 }
 
-export const ArticleDetailsComments = memo(
-    ({ className, articleId }: ArticleDetailsCommentsProps) => {
-        const { t } = useTranslation();
-        const dispatch = useAppDispatch();
-        const comments = useSelector(getArticleComments.selectAll);
-        const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+export const ArticleDetailsComments = memo(({ className, articleId }: ArticleDetailsCommentsProps) => {
+    const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+    const comments = useSelector(getArticleComments.selectAll);
+    const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
 
-        const onSendComment = useCallback(
-            (text: string) => {
-                dispatch(addCommentFormArticle(text));
-            },
-            [dispatch],
-        );
+    const onSendComment = useCallback(
+        (text: string) => {
+            dispatch(addCommentFormArticle(text));
+        },
+        [dispatch],
+    );
 
-        useEffect(() => {
-            if (__PROJECT__ !== 'storybook') {
-                dispatch(fetchCommentsByArticleId(articleId));
-            }
-        }, [dispatch, articleId]);
+    useEffect(() => {
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchCommentsByArticleId(articleId));
+        }
+    }, [dispatch, articleId]);
 
-        return (
-            <div className={classNames('', {}, [className])}>
-                <Text title={t('Комментарии')} className={cls.commentsTitle} />
-                {/* <Suspense fallback=""> */}
-                <AddCommentForm onSendComment={onSendComment} />
-                {/* </Suspense> */}
-                <CommentList
-                    isLoading={commentsIsLoading}
-                    comments={comments}
-                />
-            </div>
-        );
-    },
-);
+    return (
+        <div className={classNames('', {}, [className])}>
+            <Text title={t('Комментарии')} className={cls.commentsTitle} />
+            {/* <Suspense fallback=""> */}
+            <AddCommentForm onSendComment={onSendComment} />
+            {/* </Suspense> */}
+            <CommentList isLoading={commentsIsLoading} comments={comments} />
+        </div>
+    );
+});

@@ -14,49 +14,42 @@ interface ArticlesPageFiltersProps {
     onChangeSort: (newSort: ArticleSortField) => void;
 }
 
-export const ArticleSortSelector = memo(
-    ({
-        className,
-        sort,
-        order,
-        onChangeOrder,
-        onChangeSort,
-    }: ArticlesPageFiltersProps) => {
-        const { t } = useTranslation('articles');
+export const ArticleSortSelector = memo(({ className, sort, order, onChangeOrder, onChangeSort }: ArticlesPageFiltersProps) => {
+    const { t } = useTranslation('articles');
 
-        const sortFieldOptions = useMemo<SelectOption<ArticleSortField>[]>(
-            () => [
-                {
-                    value: ArticleSortField.CREATED,
-                    content: t('дате создания'),
-                },
-                {
-                    value: ArticleSortField.TITLE,
-                    content: t('названию'),
-                },
-                {
-                    value: ArticleSortField.VIEWS,
-                    content: t('просмотрам'),
-                },
-            ],
-            [t],
-        );
+    const sortFieldOptions = useMemo<SelectOption<ArticleSortField>[]>(
+        () => [
+            {
+                value: ArticleSortField.CREATED,
+                content: t('дате создания'),
+            },
+            {
+                value: ArticleSortField.TITLE,
+                content: t('названию'),
+            },
+            {
+                value: ArticleSortField.VIEWS,
+                content: t('просмотрам'),
+            },
+        ],
+        [t],
+    );
 
-        const orderOptions = useMemo<SelectOption<SortOrder>[]>(
-            () => [
-                {
-                    value: 'asc',
-                    content: t('возрастанию'),
-                },
-                {
-                    value: 'desc',
-                    content: t('убыванию'),
-                },
-            ],
-            [t],
-        );
+    const orderOptions = useMemo<SelectOption<SortOrder>[]>(
+        () => [
+            {
+                value: 'asc',
+                content: t('возрастанию'),
+            },
+            {
+                value: 'desc',
+                content: t('убыванию'),
+            },
+        ],
+        [t],
+    );
 
-        /*
+    /*
         // onChange={onChangeSort} TS2322: Type '(newSort: ArticleSortField) => void' is not assignable to type '(value: string) => void'.
         // Костыльный вариант
         const changeSortHandler = useCallback((newSort: string) => {
@@ -68,27 +61,24 @@ export const ArticleSortSelector = memo(
         }, [onChangeOrder]);
     */
 
-        return (
-            <div
-                className={classNames(cls.ArticlesPageFilters, {}, [className])}
-            >
-                <Select
-                    mwa
-                    label={t('Сортировать по')}
-                    selectId="sort"
-                    options={sortFieldOptions}
-                    value={sort}
-                    onChange={onChangeSort}
-                />
-                <Select
-                    mwa
-                    label={t('Упорядочить по')}
-                    selectId="order"
-                    options={orderOptions}
-                    value={order}
-                    onChange={onChangeOrder}
-                />
-            </div>
-        );
-    },
-);
+    return (
+        <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>
+            <Select
+                mwa
+                label={t('Сортировать по')}
+                selectId="sort"
+                options={sortFieldOptions}
+                value={sort}
+                onChange={onChangeSort}
+            />
+            <Select
+                mwa
+                label={t('Упорядочить по')}
+                selectId="order"
+                options={orderOptions}
+                value={order}
+                onChange={onChangeOrder}
+            />
+        </div>
+    );
+});

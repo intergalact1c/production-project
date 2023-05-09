@@ -5,11 +5,7 @@ import { PageWrapper } from '@/widgets/Page';
 const ForbiddenPage = () => {
     const { t } = useTranslation();
 
-    return (
-        <PageWrapper data-testid="ForbiddenPage">
-            {t('Нет доступа к этой странице')}
-        </PageWrapper>
-    );
+    return <PageWrapper data-testid="ForbiddenPage">{t('Нет доступа к этой странице')}</PageWrapper>;
 };
 
 export default memo(ForbiddenPage);

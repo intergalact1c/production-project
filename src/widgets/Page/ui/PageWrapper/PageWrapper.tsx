@@ -1,10 +1,4 @@
-import React, {
-    memo,
-    MutableRefObject,
-    ReactNode,
-    UIEvent,
-    useRef,
-} from 'react';
+import React, { memo, MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
@@ -33,9 +27,7 @@ export const PageWrapper = memo((props: PageWrapperProps) => {
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
-    const scrollPosition = useSelector((state: StateSchema) =>
-        getScrollRecoveryPath(state, pathname),
-    );
+    const scrollPosition = useSelector((state: StateSchema) => getScrollRecoveryPath(state, pathname));
 
     useInfiniteScroll({
         callback: onScrollEnd,
@@ -71,12 +63,7 @@ export const PageWrapper = memo((props: PageWrapperProps) => {
         >
             <div className={cls.inner}>
                 {children}
-                {onScrollEnd ? (
-                    <div
-                        className={classNames(cls.trigger, mods, [])}
-                        ref={triggerRef}
-                    />
-                ) : null}
+                {onScrollEnd ? <div className={classNames(cls.trigger, mods, [])} ref={triggerRef} /> : null}
             </div>
         </main>
     );

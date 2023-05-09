@@ -1,19 +1,9 @@
-import React, {
-    InputHTMLAttributes,
-    memo,
-    SyntheticEvent,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
+import React, { InputHTMLAttributes, memo, SyntheticEvent, useEffect, useRef, useState } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { HStack } from '../Stack/HStack/HStack';
 import cls from './Input.module.scss';
 
-type HTMLInputProps = Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    'value' | 'onChange' | 'readOnly'
->;
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>;
 
 interface InputProps extends HTMLInputProps {
     classname?: string;
@@ -100,19 +90,13 @@ export const Input = memo((props: InputProps) => {
     }, [inputWidth]);
 
     return (
-        <HStack
-            justify="between"
-            className={classNames(cls.InputWrapper, mods, [className])}
-        >
+        <HStack justify="between" className={classNames(cls.InputWrapper, mods, [className])}>
             {placeholder && (
                 <div className={classNames(cls.placeholder, { mw_a: mwa }, [])}>
                     <span>{placeholder}</span>
                 </div>
             )}
-            <div
-                className={cls.caretWrapper}
-                style={{ paddingLeft: `${charSize}px` }}
-            >
+            <div className={cls.caretWrapper} style={{ paddingLeft: `${charSize}px` }}>
                 <input
                     ref={inputRef}
                     type={type}
@@ -125,12 +109,7 @@ export const Input = memo((props: InputProps) => {
                     disabled={readonly}
                     {...rest}
                 />
-                {isCaretVisible && (
-                    <span
-                        className={cls.caret}
-                        style={{ left: `${caretPosition * charSize}px` }}
-                    />
-                )}
+                {isCaretVisible && <span className={cls.caret} style={{ left: `${caretPosition * charSize}px` }} />}
             </div>
         </HStack>
     );

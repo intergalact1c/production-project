@@ -15,14 +15,9 @@ const ArticleEditPage = memo(({ className }: ArticleEditPageProps) => {
 
     return (
         <PageWrapper className={classNames('', {}, [className])}>
-            {isEdit
-                ? `Редактирование статьи с id = ${id}`
-                : 'Создание новой статьи'}
+            {isEdit ? `Редактирование статьи с id = ${id}` : 'Создание новой статьи'}
             {/* eslint-disable-next-line i18next/no-literal-string */}
-            <p>
-                Обобщающий виджет с набором фичей: создания текстового блока,
-                изображения
-            </p>
+            <p>Обобщающий виджет с набором фичей: создания текстового блока, изображения</p>
         </PageWrapper>
     );
 });

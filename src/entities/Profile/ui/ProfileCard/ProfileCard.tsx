@@ -46,10 +46,7 @@ export const ProfileCard = ({
 
     if (isLoading) {
         return (
-            <HStack
-                justify="center"
-                className={classNames(cls.ProfileCard, {}, [className])}
-            >
+            <HStack justify="center" className={classNames(cls.ProfileCard, {}, [className])}>
                 <Loader />
             </HStack>
         );
@@ -57,12 +54,7 @@ export const ProfileCard = ({
 
     if (error) {
         return (
-            <div
-                className={classNames(cls.ProfileCard, {}, [
-                    className,
-                    cls.error,
-                ])}
-            >
+            <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
                 <Text
                     theme={TextTheme.ERROR}
                     title={t('Произошла ошибка при загрузке профиля')}
@@ -81,10 +73,7 @@ export const ProfileCard = ({
         <div className={classNames(cls.ProfileCard, mods, [className])}>
             {data?.avatar && (
                 <HStack justify="center" className={cls.avatarWrapper}>
-                    <Avatar
-                        src={data?.avatar}
-                        alt={`${data?.first} ${data?.lastname}`}
-                    />
+                    <Avatar src={data?.avatar} alt={`${data?.first} ${data?.lastname}`} />
                 </HStack>
             )}
             <Input
@@ -131,18 +120,8 @@ export const ProfileCard = ({
                 readonly={readonly}
                 onChange={onChangeAvatar}
             />
-            <CurrencySelect
-                value={data?.currency}
-                className={cls.input}
-                readonly={readonly}
-                onChange={onChangeCurrency}
-            />
-            <CountrySelect
-                value={data?.country}
-                className={cls.input}
-                readonly={readonly}
-                onChange={onChangeCountry}
-            />
+            <CurrencySelect value={data?.currency} className={cls.input} readonly={readonly} onChange={onChangeCurrency} />
+            <CountrySelect value={data?.country} className={cls.input} readonly={readonly} onChange={onChangeCountry} />
         </div>
     );
 };

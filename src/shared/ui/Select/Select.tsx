@@ -53,24 +53,13 @@ export const Select = typedMemo(
         };
 
         return (
-            <HStack
-                justify="between"
-                className={classNames(cls.SelectWrapper, {}, [className])}
-            >
+            <HStack justify="between" className={classNames(cls.SelectWrapper, {}, [className])}>
                 {label && (
-                    <label
-                        htmlFor={selectId}
-                        className={classNames('', mods, [])}
-                    >
+                    <label htmlFor={selectId} className={classNames('', mods, [])}>
                         <span>{label}</span>
                     </label>
                 )}
-                <select
-                    id={selectId}
-                    value={value}
-                    onChange={onChangeHandler}
-                    disabled={readonly}
-                >
+                <select id={selectId} value={value} onChange={onChangeHandler} disabled={readonly}>
                     {optionsList}
                 </select>
             </HStack>

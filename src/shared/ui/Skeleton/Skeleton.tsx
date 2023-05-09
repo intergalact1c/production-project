@@ -9,22 +9,12 @@ interface SkeletonProps {
     borderRadius?: string;
 }
 
-export const Skeleton = ({
-    className,
-    width,
-    height,
-    borderRadius,
-}: SkeletonProps) => {
+export const Skeleton = ({ className, width, height, borderRadius }: SkeletonProps) => {
     const styles: CSSProperties = {
         width,
         height,
         borderRadius,
     };
 
-    return (
-        <div
-            className={classNames(cls.Skeleton, {}, [className])}
-            style={styles}
-        />
-    );
+    return <div className={classNames(cls.Skeleton, {}, [className])} style={styles} />;
 };

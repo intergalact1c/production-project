@@ -9,24 +9,18 @@ const recommendationsAdapter = createEntityAdapter<Article>({
 });
 
 // Создаем селектор комментариев
-export const getArticleRecommendations =
-    recommendationsAdapter.getSelectors<StateSchema>(
-        (state) =>
-            state.articleDetailsPage?.recommendations ||
-            recommendationsAdapter.getInitialState(),
-    );
+export const getArticleRecommendations = recommendationsAdapter.getSelectors<StateSchema>(
+    (state) => state.articleDetailsPage?.recommendations || recommendationsAdapter.getInitialState(),
+);
 
 const articleDetailsRecommendationsSlice = createSlice({
     name: 'articleDetailsRecommendationsSlice',
-    initialState:
-        recommendationsAdapter.getInitialState<ArticleDetailsRecommendationsSchema>(
-            {
-                isLoading: false,
-                error: undefined,
-                ids: [],
-                entities: {},
-            },
-        ),
+    initialState: recommendationsAdapter.getInitialState<ArticleDetailsRecommendationsSchema>({
+        isLoading: false,
+        error: undefined,
+        ids: [],
+        entities: {},
+    }),
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -45,5 +39,4 @@ const articleDetailsRecommendationsSlice = createSlice({
     },
 });
 
-export const { reducer: articleDetailsRecommendationsReducer } =
-    articleDetailsRecommendationsSlice;
+export const { reducer: articleDetailsRecommendationsReducer } = articleDetailsRecommendationsSlice;

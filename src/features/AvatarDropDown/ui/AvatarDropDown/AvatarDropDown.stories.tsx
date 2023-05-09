@@ -19,9 +19,7 @@ export default {
     ],
 } as ComponentMeta<typeof AvatarDropDown>;
 
-const Template: ComponentStory<typeof AvatarDropDown> = (args) => (
-    <AvatarDropDown {...args} />
-);
+const Template: ComponentStory<typeof AvatarDropDown> = (args) => <AvatarDropDown {...args} />;
 
 const initialState = {
     user: {

@@ -6,10 +6,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Text, TextTheme } from '@/shared/ui/Text';
-import {
-    DynamicModuleLoader,
-    ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { User } from '@/entities/User';
 import { getLoginFormPassword } from '../../model/selectors/getLoginFormPassword/getLoginFormPassword';
@@ -81,30 +78,10 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     return (
         <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
             <div className={classNames(cls.LoginForm, {}, [className])}>
-                <Text
-                    title={t('Форма авторизации')}
-                    className={cls.loginFormTitle}
-                />
-                <Input
-                    autoFocus
-                    placeholder={t('Логин')}
-                    value={login}
-                    onChange={onChangeLogin}
-                    className={cls.loginFormInput}
-                />
-                <Input
-                    placeholder={t('Пароль')}
-                    value={password}
-                    onChange={onChangePassword}
-                    className={cls.loginFormInput}
-                />
-                {error && (
-                    <Text
-                        text={t('Неверный логин или пароль')}
-                        theme={TextTheme.ERROR}
-                        className={cls.loginFormError}
-                    />
-                )}
+                <Text title={t('Форма авторизации')} className={cls.loginFormTitle} />
+                <Input autoFocus placeholder={t('Логин')} value={login} onChange={onChangeLogin} className={cls.loginFormInput} />
+                <Input placeholder={t('Пароль')} value={password} onChange={onChangePassword} className={cls.loginFormInput} />
+                {error && <Text text={t('Неверный логин или пароль')} theme={TextTheme.ERROR} className={cls.loginFormError} />}
                 <Button
                     disabled={isLoading}
                     theme={ButtonTheme.BACKGROUND_INVERTED}

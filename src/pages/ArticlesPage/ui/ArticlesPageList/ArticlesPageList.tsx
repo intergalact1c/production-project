@@ -5,10 +5,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { ArticleList, ArticleVirtualizedList } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text } from '@/shared/ui/Text';
-import {
-    articlesPageActions,
-    getArticles,
-} from '../../model/slices/ArticlesPageSlice';
+import { articlesPageActions, getArticles } from '../../model/slices/ArticlesPageSlice';
 import {
     getArticlesPageError,
     getArticlesPageIsLoading,
@@ -43,17 +40,9 @@ export const ArticlesPageList = memo(({ className }: ArticlesPageListProps) => {
     return (
         <div className={classNames('', {}, [className])}>
             {__PROJECT__ !== 'storybook' ? (
-                <ArticleVirtualizedList
-                    isLoading={isLoading}
-                    articles={articles}
-                    view={view}
-                />
+                <ArticleVirtualizedList isLoading={isLoading} articles={articles} view={view} />
             ) : (
-                <ArticleList
-                    isLoading={isLoading}
-                    articles={articles}
-                    view={view}
-                />
+                <ArticleList isLoading={isLoading} articles={articles} view={view} />
             )}
         </div>
     );

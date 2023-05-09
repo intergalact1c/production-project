@@ -16,31 +16,25 @@ interface TabsProps {
     onTabClick: (tab: TabItem) => void;
 }
 
-export const Tabs = memo(
-    ({ className, tabs, value, onTabClick }: TabsProps) => {
-        const clickHandle = useCallback(
-            (tab: TabItem) => () => {
-                onTabClick(tab);
-            },
-            [onTabClick],
-        );
-        return (
-            <HStack gap="8" className={classNames('', {}, [className])}>
-                {tabs.map((tab) => (
-                    <Card
-                        theme={
-                            tab.value === value
-                                ? CardTheme.NORMAL
-                                : CardTheme.OUTLINED
-                        }
-                        className={cls.tab}
-                        key={tab.value}
-                        onClick={clickHandle(tab)}
-                    >
-                        {tab.content}
-                    </Card>
-                ))}
-            </HStack>
-        );
-    },
-);
+export const Tabs = memo(({ className, tabs, value, onTabClick }: TabsProps) => {
+    const clickHandle = useCallback(
+        (tab: TabItem) => () => {
+            onTabClick(tab);
+        },
+        [onTabClick],
+    );
+    return (
+        <HStack gap="8" className={classNames('', {}, [className])}>
+            {tabs.map((tab) => (
+                <Card
+                    theme={tab.value === value ? CardTheme.NORMAL : CardTheme.OUTLINED}
+                    className={cls.tab}
+                    key={tab.value}
+                    onClick={clickHandle(tab)}
+                >
+                    {tab.content}
+                </Card>
+            ))}
+        </HStack>
+    );
+});

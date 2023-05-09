@@ -9,14 +9,10 @@ describe('getProfileValidateErrors', () => {
                 validateErrors: [ValidateProfileError.SERVER_ERROR],
             },
         };
-        expect(getProfileValidateErrors(state as StateSchema)).toEqual([
-            ValidateProfileError.SERVER_ERROR,
-        ]);
+        expect(getProfileValidateErrors(state as StateSchema)).toEqual([ValidateProfileError.SERVER_ERROR]);
     });
     test('should return empty state', () => {
         const state: DeepPartial<StateSchema> = {};
-        expect(getProfileValidateErrors(state as StateSchema)).toEqual(
-            undefined,
-        );
+        expect(getProfileValidateErrors(state as StateSchema)).toEqual(undefined);
     });
 });

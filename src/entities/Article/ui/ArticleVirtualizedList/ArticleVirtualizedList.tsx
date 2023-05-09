@@ -1,9 +1,4 @@
-import React, {
-    HTMLAttributeAnchorTarget,
-    memo,
-    MutableRefObject,
-    useRef,
-} from 'react';
+import React, { HTMLAttributeAnchorTarget, memo, MutableRefObject, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { List, ListRowProps, WindowScroller } from 'react-virtualized';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -27,51 +22,27 @@ interface ArticleListProps {
 const getSkeletons = (view: ArticleView) =>
     new Array(view === ArticleView.TILE ? 8 : 4)
         .fill(0)
-        .map((item, index) => (
-            <ArticleListItemSkeleton key={index} view={view} />
-        ));
+        .map((item, index) => <ArticleListItemSkeleton key={index} view={view} />);
 
 export const ArticleVirtualizedList = memo(
-    ({
-        className,
-        articles,
-        isLoading,
-        view = ArticleView.TILE,
-        target,
-    }: ArticleListProps) => {
+    ({ className, articles, isLoading, view = ArticleView.TILE, target }: ArticleListProps) => {
         const { t } = useTranslation('articles');
         const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
         const isList = view === ArticleView.LIST;
         const articlesPerRow = isList ? 1 : 4;
-        const rowCount = isList
-            ? articles.length
-            : Math.ceil(articles.length / articlesPerRow);
+        const rowCount = isList ? articles.length : Math.ceil(articles.length / articlesPerRow);
 
         const rowRender = ({ index, key, style }: ListRowProps) => {
             const items = [];
             const fromIndex = index * articlesPerRow;
-            const toIndex = Math.min(
-                fromIndex + articlesPerRow,
-                articles.length,
-            );
+            const toIndex = Math.min(fromIndex + articlesPerRow, articles.length);
 
             for (let i = fromIndex; i < toIndex; i += 1) {
-                items.push(
-                    <ArticleListItem
-                        key={articles[i].id}
-                        article={articles[i]}
-                        view={view}
-                        target={target}
-                    />,
-                );
+                items.push(<ArticleListItem key={articles[i].id} article={articles[i]} view={view} target={target} />);
             }
 
             return (
-                <div
-                    key={key}
-                    style={style}
-                    className={classNames(cls.articlesRow, {}, [])}
-                >
+                <div key={key} style={style} className={classNames(cls.articlesRow, {}, [])}>
                     {items}
                 </div>
             );
@@ -88,21 +59,11 @@ export const ArticleVirtualizedList = memo(
                     // scrollElement={containerRef.current}
                     scrollElement={document.getElementById(PAGE_ID) as Element}
                 >
-                    {({
-                        height,
-                        width,
-                        registerChild,
-                        onChildScroll,
-                        isScrolling,
-                        scrollTop,
-                    }) => (
+                    {({ height, width, registerChild, onChildScroll, isScrolling, scrollTop }) => (
                         <div
                             // @ts-ignore
                             ref={registerChild}
-                            className={classNames(cls.ArticleList, {}, [
-                                className,
-                                cls[view],
-                            ])}
+                            className={classNames(cls.ArticleList, {}, [className, cls[view]])}
                             data-testid="ArticleList"
                         >
                             {/* @ts-ignore */}

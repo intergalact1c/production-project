@@ -8,10 +8,7 @@ import { Country } from '@/entities/Country';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { Text, TextTheme } from '@/shared/ui/Text';
 import { ProfileCard } from '@/entities/Profile';
-import {
-    DynamicModuleLoader,
-    ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { EditableProfileCardHeader } from '../../ui/EditableProfileCardHeader/EditableProfileCardHeader';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
@@ -44,9 +41,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const validateErrors = useSelector(getProfileValidateErrors);
 
     const validateErrorsTranslates = {
-        [ValidateProfileError.INCORRECT_USER_DATA]: t(
-            'Имя и фамилия обязательны',
-        ),
+        [ValidateProfileError.INCORRECT_USER_DATA]: t('Имя и фамилия обязательны'),
         [ValidateProfileError.INCORRECT_AVATAR]: t('Аватар обязателен'),
         [ValidateProfileError.INCORRECT_LOGIN]: t('Логин обязателен'),
         [ValidateProfileError.INCORRECT_CITY]: t('Город обязателен'),
@@ -54,9 +49,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         [ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректный регион'),
         [ValidateProfileError.INCORRECT_CURRENCY]: t('Некорректная валюта'),
         [ValidateProfileError.NO_DATA]: t('Данные не указаны'),
-        [ValidateProfileError.SERVER_ERROR]: t(
-            'Серверная ошибка при сохранении',
-        ),
+        [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
     };
 
     // const profileId = __PROJECT__ !== 'storybook' ? id : '1';

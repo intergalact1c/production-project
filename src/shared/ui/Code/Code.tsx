@@ -19,13 +19,7 @@ export const Code = memo(({ className, text }: CodeProps) => {
 
     return (
         <div className={classNames(cls.Code, {}, [className])}>
-            <Button
-                type="button"
-                theme={ButtonTheme.CLEAR}
-                className={cls.btn}
-                title={t('Копировать')}
-                onClick={onCopy}
-            >
+            <Button type="button" theme={ButtonTheme.CLEAR} className={cls.btn} title={t('Копировать')} onClick={onCopy}>
                 <CopyIcon />
             </Button>
             <pre>

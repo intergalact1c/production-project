@@ -13,9 +13,7 @@ describe('fetchUserByLogin', () => {
             password: 'password',
         });
 
-        expect(thunk.dispatch).toHaveBeenCalledWith(
-            userActions.setAuthData(userValue),
-        ); // проверка на то, что dispatch был вызван с аргументом userValue
+        expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue)); // проверка на то, что dispatch был вызван с аргументом userValue
         expect(thunk.dispatch).toHaveBeenCalledTimes(3); // проверка на то, что dispatch был вызван 3 раза:
         // 1 раз - когда вызвали сам action fetchUserByLogin (pending)
         // 2 раз - когда вызвали dispatch с action setAuthData (24 строка fetchUserByLogin.ts)

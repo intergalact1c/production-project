@@ -10,10 +10,7 @@ interface ErrorBounadaryStateProps {
     hasError: boolean;
 }
 
-class ErrorBoundary extends React.Component<
-    ErrorBounadaryProps,
-    ErrorBounadaryStateProps
-> {
+class ErrorBoundary extends React.Component<ErrorBounadaryProps, ErrorBounadaryStateProps> {
     constructor(props: ErrorBounadaryProps) {
         super(props);
         this.state = { hasError: false };

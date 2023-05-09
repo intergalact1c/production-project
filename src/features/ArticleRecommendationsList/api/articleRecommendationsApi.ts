@@ -16,5 +16,4 @@ const recommendationsApi = rtkApi.injectEndpoints({
 
 // RTK автоматически генерирует хуки, которые умеют кешировать, запоминать / возвращать данные
 // Хуки генерируются в зависимости от названия
-export const useGetArticleRecommendationsList =
-    recommendationsApi.useGetArticleRecommendationsListQuery;
+export const useGetArticleRecommendationsList = recommendationsApi.useGetArticleRecommendationsListQuery;

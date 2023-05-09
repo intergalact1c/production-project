@@ -4,12 +4,7 @@ module.exports = {
         es2021: true,
         jest: true, // ESLint: 'describe' is not defined.(no-undef)
     },
-    extends: [
-        'plugin:react/recommended',
-        'airbnb',
-        'plugin:i18next/recommended',
-        'prettier',
-    ],
+    extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended', 'prettier'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
@@ -18,22 +13,12 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: [
-        'react',
-        '@typescript-eslint',
-        'i18next',
-        'react-hooks',
-        'isp-web-plugin',
-        'unused-imports',
-    ],
+    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'isp-web-plugin', 'unused-imports'],
     rules: {
         // prettier 'react/jsx-indent': [2, 4], // отступы для jsx. 2 - означает, что будет выбрасываться ошибка при не соблюдении правила
         // prettier 'react/jsx-indent-props': [2, 4], // отступы для пропсов в jsx
         // prettier indent: [2, 4], // отступы для остального кода
-        'react/jsx-filename-extension': [
-            2,
-            { extensions: ['.js', '.jsx', '.tsx'] },
-        ], // разрешаем расширение JSX в файлах '.js', '.jsx', '.tsx'
+        'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }], // разрешаем расширение JSX в файлах '.js', '.jsx', '.tsx'
         'import/no-unresolved': 'off', // абсолютные пути or "@typescript-eslint/no-unused-vars": "off",
         'unused-imports/no-unused-imports': 'error',
         'import/prefer-default-export': 'off', // дефолтный экспорт по умолчанию
@@ -65,10 +50,11 @@ module.exports = {
                     'label',
                     'refName',
                     'borderRadius',
+                    'feature',
                 ],
             },
         ],
-        'max-len': [2, { code: 130, ignoreComments: true }], // длина строки
+        // prettier 'max-len': [2, { code: 130, ignoreComments: true }], // длина строки
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
@@ -81,11 +67,7 @@ module.exports = {
             'error',
             {
                 alias: '@',
-                testFilesPatterns: [
-                    '**/*.test.*',
-                    '**/*.story.*',
-                    '**/StoreDecorator.tsx',
-                ],
+                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
             },
         ],
         'isp-web-plugin/layer-imports': [
@@ -95,7 +77,10 @@ module.exports = {
                 ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
             },
         ],
-        'react/jsx-max-props-per-line': ['error', { maximum: 4 }], // допустимое количество атрибутов в одной линии
+        'react/jsx-max-props-per-line': ['error', { maximum: 5 }], // допустимое количество атрибутов в одной линии
+        // ESLint: Declare this component outside parent component "ArticleDetailsPage" or memoize it.
+        // If you want to allow component creation in props, set allowAsProps option to true.(react/no-unstable-nested-components)
+        'react/no-unstable-nested-components': 'warn',
     },
     globals: {
         __IS_DEV__: true,

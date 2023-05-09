@@ -17,9 +17,7 @@ interface ProfilePageHeaderProps {
     classname?: string;
 }
 
-export const EditableProfileCardHeader = ({
-    classname,
-}: ProfilePageHeaderProps) => {
+export const EditableProfileCardHeader = ({ classname }: ProfilePageHeaderProps) => {
     const { t } = useTranslation('profile');
 
     const authData = useSelector(getUserAuthData);

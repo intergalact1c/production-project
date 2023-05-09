@@ -17,15 +17,8 @@ const ProfilePage = ({ classname }: ProfilePageProps) => {
     const profileId = __PROJECT__ !== 'storybook' ? id : '1';
 
     return (
-        <PageWrapper
-            data-testid="ProfilePage"
-            className={classNames('', {}, [classname])}
-        >
-            {!profileId ? (
-                <Text text={t('Профиль не найден')} />
-            ) : (
-                <EditableProfileCard id={profileId} />
-            )}
+        <PageWrapper data-testid="ProfilePage" className={classNames('', {}, [classname])}>
+            {!profileId ? <Text text={t('Профиль не найден')} /> : <EditableProfileCard id={profileId} />}
         </PageWrapper>
     );
 };
